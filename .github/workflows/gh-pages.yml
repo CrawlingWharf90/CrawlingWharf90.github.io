@@ -56,20 +56,21 @@ jobs:
               <title>Guides</title>\
             </head>\
             <body>\
-              <div id="menu">\
-                    <div id="menu-items">\
-                        <a href="#" class="menu-item">C programming</a>\
-                        <a href="#" class="menu-item">Unity</a>\
-                        <a href="#" class="menu-item">Guide 3</a>\
-                        <a href="#" class="menu-item">Guide 4</a>\
-                        <a href="#" class="menu-item">Back to Home</a>\
-                    </div>\
+              <div id="menu">
+                    <div id="menu-items">" >> index.html
+          find . -type d -mindepth 1 -maxdepth 1 -print0 | sort | while read -d $'\0' doc_dir
+            do
+              if [[ -f "${doc_dir}/index.html" ]]; then
+                echo "<a href=\"${doc_dir}/index.html\" class="menu-item">$(basename "${doc_dir}")</a>" >> index.html
+              fi
+            done
+          echo "</div>\
                     <div id="menu-background-pattern"></div>\
                     <div id="menu-background-image"></div>\
                 </div>\
               <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>\
             </body>\
-            </html>" >> index.html
+            </html>\" >> index.html
       - name: Delete symlinks if any
         run: |
           find . -type l -delete
