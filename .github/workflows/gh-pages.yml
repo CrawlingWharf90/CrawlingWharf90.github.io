@@ -45,23 +45,31 @@ jobs:
             done
       - name: Create index.html
         run: |
-          echo "<html> \
-            <head> \
-            <meta name="viewport" content="width=device-width, initial-scale=1"> \
-            <title>Guides</title> \
-            <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js'></script> \
-            <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css'> \
-            </head> \
-            <body> \
-            <div class="container"> \
-            <ul>" > index.html
-          find . -type d -mindepth 1 -maxdepth 1 -print0 | sort | while read -d $'\0' doc_dir
-            do
-              if [[ -f "${doc_dir}/index.html" ]]; then
-                echo "<li><a href=\"${doc_dir}/index.html\">$(basename "${doc_dir}")</a></li>" >> index.html
-              fi
-            done
-          echo "</ul></div></body></html>" >> index.html
+          echo "<html lang="en">\
+            <head>\
+              <meta charset="UTF-8">\
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">\
+              <meta name="author" content="Nadav Moscovici">\
+              <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">\
+                <link rel="stylesheet" href="css/index.css">\
+                <script src="js/index.js" defer></script>\
+              <title>Guides</title>\
+            </head>\
+            <body>\
+              <div id="menu">\
+                    <div id="menu-items">\
+                        <a href="#" class="menu-item">C programming</a>\
+                        <a href="#" class="menu-item">Unity</a>\
+                        <a href="#" class="menu-item">Guide 3</a>\
+                        <a href="#" class="menu-item">Guide 4</a>\
+                        <a href="#" class="menu-item">Back to Home</a>\
+                    </div>\
+                    <div id="menu-background-pattern"></div>\
+                    <div id="menu-background-image"></div>\
+                </div>\
+              <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>\
+            </body>\
+            </html>" >> index.html
       - name: Delete symlinks if any
         run: |
           find . -type l -delete
