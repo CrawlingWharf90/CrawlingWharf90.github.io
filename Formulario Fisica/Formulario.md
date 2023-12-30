@@ -84,7 +84,7 @@
   </tr>
   <tr>
     <td><i>Urto Elastico</i></td>
-    <td><i>Quantità di moto:</i> m<sub>1</sub>v<sub>1</sub> + m<sub>2</sub>v<sub>2</sub> = m<sub>1</sub>v<sub>1f</sub> + m<sub>2</sub>v<sub>2f</sub><br><i>Energia Cinetica:</i> &frac12 m<sub>1</sub>v<sub>1</sub><sup>2</sup> + &frac12 m<sub>2</sub>v<sub>2</sub><sup>2</sup> = &frac12 m<sub>1</sub>v<sub>1f</sub><sup>2</sup> + &frac12 m<sub>2</sub>v<sub>2f</sub><sup>2</sup></td>
+    <td><i>Quantità di moto:</i> m<sub>1</sub>v<sub>1</sub> + m<sub>2</sub>v<sub>2</sub> = m<sub>1</sub>v<sub>1f</sub> + m<sub>2</sub>v<sub>2f</sub><br><i>Energia Cinetica:</i> ½m<sub>1</sub>v<sub>1</sub><sup>2</sup> + ½m<sub>2</sub>v<sub>2</sub><sup>2</sup> = ½m<sub>1</sub>v<sub>1f</sub><sup>2</sup> + ½m<sub>2</sub>v<sub>2f</sub><sup>2</sup></td>
   </tr>
   <tr>
     <td><i>Urto Anaelastico</i></td>
