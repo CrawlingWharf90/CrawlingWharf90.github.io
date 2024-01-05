@@ -23,7 +23,7 @@
     <td>𝜃(t) = ω(t - t₀) + 𝜃₀</td>
   </tr>
   <tr>
-    <td><i>Moto Circolara Uniformemente<br>Accelerato</i></td>
+    <td><i>Moto Circolare Uniformemente<br>Accelerato</i></td>
     <td>𝜃(t) = ½ · α(t - t₀)² + ω₀(t - t₀) + 𝜃₀</td>
   </tr>
   <tr>
@@ -87,11 +87,11 @@
     <td><i>Quantità di moto:</i> m<sub>1</sub>v<sub>1</sub> + m<sub>2</sub>v<sub>2</sub> = m<sub>1</sub>v<sub>1f</sub> + m<sub>2</sub>v<sub>2f</sub><br><i>Energia Cinetica:</i> ½m<sub>1</sub>v<sub>1</sub><sup>2</sup> + ½m<sub>2</sub>v<sub>2</sub><sup>2</sup> = ½m<sub>1</sub>v<sub>1f</sub><sup>2</sup> + ½m<sub>2</sub>v<sub>2f</sub><sup>2</sup></td>
   </tr>
   <tr>
-    <td><i>Urto Anaelastico</i></td>
+    <td><i>Urto Anelastico</i></td>
     <td><i>Quantità di moto:</i> m<sub>1</sub>v<sub>1</sub> + m<sub>2</sub>v<sub>2</sub> = m<sub>1</sub>v<sub>1f</sub> + m<sub>2</sub>v<sub>2f</sub></td>
   </tr>
   <tr>
-    <td><i>Urto Completamente<br>Anaelastico</i></td>
+    <td><i>Urto Completamente<br>Anelastico</i></td>
     <td><i>Quantità di moto:</i> m<sub>1</sub>v<sub>1</sub> + m<sub>2</sub>v<sub>2</sub> = (m<sub>1</sub> + m<sub>2</sub>)v<sub>f</sub></td>
   </tr>
 </table>
