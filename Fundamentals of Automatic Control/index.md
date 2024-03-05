@@ -26,3 +26,9 @@ $
 \frac{dx(t)}{dt} = f(x(t),u(t), t) \rightarrow (sistema) (\frac{dx_{1}}{dt}, \text{...}) 
 $
 
+## Modello dei Sistemi LTI
+
+$
+\frac{dx(t)}{dt} = A\times x(t) + B\times U(t)
+$
+
