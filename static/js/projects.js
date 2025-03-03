@@ -108,8 +108,8 @@ document.addEventListener("DOMContentLoaded", function() {
                             else
                             {
                                 projectDescriptionLink.style.display = "block";
-                                projectDescriptionLink.innerText = projects[projectIndex].link.preview;
-                                projectDescriptionLink.href = projects[projectIndex].link.address;
+                                projectDescriptionLink.innerHTML = `<a target="_blank">${projects[projectIndex].link.preview}</a>`;
+                                projectDescriptionLink.querySelector('a').href = projects[projectIndex].link.address;
                                 projectDescriptionLink.style.opacity = 1;
                             }
                             backgroundImage.style.backgroundImage = `url(${projects[projectIndex].image})`; //!this might need to be changed to a path later on
