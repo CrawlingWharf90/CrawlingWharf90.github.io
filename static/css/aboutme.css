@@ -1,0 +1,355 @@
+@import url("https://fonts.googleapis.com/css2?family=Karantina&display=swap");
+body {
+  background-color: #000;
+  color: #FFF;
+  font-size: 24px;
+  padding-top: 7.5%;
+  padding-left: 10%;
+  padding-bottom: 10%;
+  overflow-x: hidden;
+}
+
+.cmd-font {
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 500;
+  text-shadow: 0.5px 0.5px 0.5px rgba(255, 255, 255, 0.5);
+}
+
+#go-back-btn {
+  position: fixed;
+  z-index: 9999;
+  bottom: 2%;
+  left: 3%;
+}
+#go-back-btn > button {
+  color: rgba(255, 255, 255, 0.5);
+  background-color: transparent;
+  border: rgba(255, 255, 255, 0.5) 1px solid;
+  font-size: 24px;
+  font-weight: 900;
+  backdrop-filter: blur(5px);
+  transition: all linear 0.3s;
+}
+#go-back-btn > button:hover {
+  color: #FFFFFF;
+  border: #FFF 1px solid;
+}
+
+#TAAG {
+  max-width: 1050px;
+  position: fixed;
+  text-align: center;
+  top: 10%;
+  bottom: auto;
+}
+
+.education {
+  position: relative;
+  margin-top: 22.5%; /*TODO: could be needed to be changed dinamically*/
+  width: 65%;
+  padding: 20px;
+}
+
+.edu-desc {
+  max-width: 1066px;
+}
+
+.tab {
+  overflow: hidden;
+  border: none;
+  background-color: transparent;
+}
+
+.tab button {
+  color: #FFF;
+  background-color: inherit;
+  float: left;
+  border: 1px solid #ccc;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+.tab button:hover {
+  background-color: rgba(221, 221, 221, 0.6509803922);
+  color: #000;
+}
+
+.tab button.active {
+  background-color: #ddd;
+  color: #000;
+}
+
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+  width: 1068px;
+}
+
+#second-section {
+  height: 100vh;
+  width: 100%;
+}
+
+#free-time-title {
+  font-family: "Karantina", system-ui;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 150px;
+  white-space: nowrap;
+}
+
+.free-time-fixed {
+  position: fixed;
+}
+
+.free-time-static {
+  position: static;
+  padding-left: 25px;
+}
+
+#section-title {
+  font-family: "Karantina", system-ui;
+  font-weight: 100;
+  font-size: 36px;
+  white-space: nowrap;
+  position: fixed;
+  left: 2%;
+  top: 0%;
+  background-color: #000;
+  background-size: cover;
+  width: 100%;
+  height: fit-content;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  z-index: 9999;
+}
+
+#free-time-div {
+  max-width: 75%;
+  left: 15%;
+  padding-bottom: 5%;
+  position: relative;
+}
+
+#lyrics-curator {
+  max-width: 75%;
+  left: 0%;
+  padding-bottom: 5%;
+}
+
+#lyrics-curator-div {
+  position: absolute;
+  left: 0%;
+  top: 85%;
+  width: 75%;
+  transition: all ease-in 0.7s;
+}
+#lyrics-curator-div > button {
+  border: none;
+  color: white;
+  width: 60px;
+  height: 60px;
+}
+#lyrics-curator-div > h1 {
+  font-family: "Karantina", system-ui;
+  font-weight: 100;
+  font-size: 75px;
+  white-space: nowrap;
+}
+#lyrics-curator-div > span {
+  position: absolute;
+  transform: translateX(5%) translateY(33%);
+}
+
+#musixmatch {
+  background-color: rgba(77, 77, 77, 0.4);
+  border-radius: 50%;
+  transition: all ease-in 0.5s;
+}
+#musixmatch > img {
+  width: 100%;
+  height: 100%;
+  filter: invert(62%) sepia(0%) saturate(0%) hue-rotate(217deg) brightness(92%) contrast(90%);
+  transition: all ease-in 0.6s;
+}
+#musixmatch:before {
+  content: "Musixmatch";
+  font-family: "Karantina", system-ui;
+  font-weight: 100;
+  font-size: 22px;
+  color: #FFF;
+  position: absolute;
+  text-align: center;
+  transform: translateY(0%) translateX(-12.5%);
+  width: fit-content;
+  opacity: 0;
+  z-index: -1;
+  transition: all linear 0.5s;
+}
+#musixmatch:hover {
+  border-radius: 25%;
+  background-color: rgb(253, 45, 100);
+}
+#musixmatch:hover > img {
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(144deg) brightness(101%) contrast(101%);
+}
+#musixmatch:hover:before {
+  transform: translateY(-100%) translateX(-12.5%);
+  opacity: 1;
+}
+
+#genius {
+  background-color: rgba(77, 77, 77, 0.4);
+  border-radius: 50%;
+  transition: all ease-in 0.5s;
+}
+#genius > img {
+  width: 100%;
+  height: 100%;
+  filter: invert(62%) sepia(0%) saturate(0%) hue-rotate(217deg) brightness(92%) contrast(90%);
+  transition: all ease-in 0.6s;
+}
+#genius:before {
+  content: "Genius";
+  font-family: "Karantina", system-ui;
+  font-weight: 100;
+  font-size: 24px;
+  color: #FFF;
+  position: absolute;
+  text-align: center;
+  transform: translateY(0%) translateX(12.5%);
+  width: fit-content;
+  opacity: 0;
+  z-index: -1;
+  transition: all linear 0.5s;
+}
+#genius:hover {
+  border-radius: 25%;
+  background-color: rgb(255, 255, 100);
+}
+#genius:hover > img {
+  filter: invert(0%) sepia(17%) saturate(7433%) hue-rotate(90deg) brightness(98%) contrast(93%);
+}
+#genius:hover:before {
+  transform: translateY(-100%) translateX(12.5%);
+  opacity: 1;
+}
+
+#lyrics-curator-img {
+  position: absolute;
+  border: #FFF 1px solid;
+  width: 40vw;
+  height: auto;
+  padding: 5px;
+  right: -35%;
+  transition: all ease-in 0.7s;
+}
+#lyrics-curator-img > img {
+  width: 100%;
+  height: 100%;
+}
+#lyrics-curator-img:hover {
+  padding: 0px;
+  border: #FFF 0px solid;
+  right: -10%;
+}
+
+#contact {
+  position: absolute;
+  bottom: -75%;
+  padding-bottom: 15%;
+  text-align: center;
+}
+#contact > h1 {
+  font-family: "Karantina", system-ui;
+  font-weight: 100;
+  font-size: 75px;
+  white-space: nowrap;
+}
+#contact > footer {
+  position: absolute;
+  bottom: 5%;
+  font-size: 20px;
+  width: 100%;
+  text-align: center;
+}
+
+#contact-links {
+  position: absolute;
+  width: 100%;
+}
+#contact-links > button {
+  position: relative;
+  width: 75px;
+  height: 75px;
+  border: none;
+  background: rgba(77, 77, 77, 0.4);
+  border-radius: 10%;
+  align-items: center;
+  justify-content: center;
+  transition: all ease-in 0.5s;
+  filter: none;
+}
+#contact-links > button > img {
+  width: 80%;
+  height: 80%;
+  filter: invert(85%) sepia(0%) saturate(0%) hue-rotate(186deg) brightness(92%) contrast(94%);
+  transition: all ease-out 0.4s;
+}
+#contact-links > button:nth-child(4):before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 10%;
+  opacity: 0;
+  background: #f09433;
+  background: -moz-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  background: -webkit-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#f09433", endColorstr="#bc1888",GradientType=1 );
+  transition: opacity ease-in 0.5s;
+}
+#contact-links > button:hover > img {
+  width: 100%;
+  height: 100%;
+}
+#contact-links > button:hover:nth-child(1) {
+  background: rgb(195, 195, 195);
+}
+#contact-links > button:hover:nth-child(1) > img {
+  filter: invert(2%) sepia(8%) saturate(1679%) hue-rotate(328deg) brightness(92%) contrast(97%);
+}
+#contact-links > button:hover:nth-child(2) {
+  background: #FFF;
+}
+#contact-links > button:hover:nth-child(2) > img {
+  filter: invert(11%) sepia(3%) saturate(5129%) hue-rotate(169deg) brightness(96%) contrast(79%);
+}
+#contact-links > button:hover:nth-child(3) {
+  background: #0077B5;
+}
+#contact-links > button:hover:nth-child(3) > img {
+  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(93deg) brightness(102%) contrast(102%);
+}
+#contact-links > button:hover:nth-child(4) > img {
+  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(93deg) brightness(102%) contrast(102%);
+}
+#contact-links > button:hover:nth-child(4):before {
+  opacity: 1;
+}
+#contact-links > button:hover:nth-child(5) {
+  background: #FF0000;
+}
+#contact-links > button:hover:nth-child(5) > img {
+  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(93deg) brightness(102%) contrast(102%);
+}
+
+/*# sourceMappingURL=aboutme.css.map */

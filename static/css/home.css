@@ -1,0 +1,63 @@
+body {
+  background-color: #000;
+  color: #FFF;
+  font-size: 24px;
+  padding-top: 7.5%;
+  padding-left: 10%;
+  overflow-x: hidden;
+}
+
+.cmd-font {
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 500;
+  text-shadow: 0.5px 0.5px 0.5px rgba(255, 255, 255, 0.5);
+}
+
+.cmd-container {
+  position: relative;
+}
+
+.cmd-input {
+  background-color: transparent;
+  border: none;
+  color: #FFF;
+  font-size: 24px;
+  position: absolute;
+  width: 100%;
+  white-space: nowrap;
+}
+.cmd-input:focus {
+  outline: none;
+}
+
+.cmd-span {
+  position: relative;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+}
+
+.cmd-btns {
+  color: #FFF;
+  left: 5%;
+  font-size: 26px;
+  padding-bottom: 0.6%;
+  text-decoration: none;
+  transition: all 0.3s linear;
+}
+.cmd-btns:hover {
+  transform: scale(1.08);
+  padding-left: 2%;
+}
+
+.btn-underline {
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgb(255, 255, 255));
+  transition: all 0.5s ease-in;
+}
+
+/*# sourceMappingURL=home.css.map */
