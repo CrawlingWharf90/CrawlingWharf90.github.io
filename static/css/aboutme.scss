@@ -4,11 +4,15 @@ body
 {
   background-color: #000;
   color: #FFF;
-  font-size: 24px; 
-  padding-top: 7.5%;
-  padding-left: 10%;
-  padding-bottom: 10%;
+  font-size: 24px;
   overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  text-align: center;
+  padding: 20px;
 }
 
 .cmd-font {
@@ -44,71 +48,100 @@ body
 
 #TAAG /*TODO: make text resize and disappear on window width change*/
 {
+  position: relative;
   max-width: 1050px;
-  position: fixed;
   text-align: center;
+  margin-bottom: 100px;
   top: 10%; 
-  bottom: auto; 
+}
+
+#second-section, #lyrics-curator {
+  max-width: 1600px;
+  width: 100%;
+}
+.tab {
+  display: flex;
+  justify-content: center;
+}
+.tabcontent {
+  display: none;
+  text-align: center;
 }
 
 .education
 {
-  position: relative; 
-  margin-top: 22.5%; /*TODO: could be needed to be changed dinamically*/
-  width: 65%; 
-  padding: 20px;
+  backdrop-filter: blur(5px);
+  position: relative;
+  max-width: 1050px;
+  width: 100%;
+  & > button 
+  {
+    margin: 5px;
+  }
 }
 
 .edu-desc
 {
-max-width: 1066px;
+  max-width: 1066px;
 }
 
 .tab 
 {
+  display: flex;
+  justify-content: left;
+  position: relative;
+  white-space: nowrap;
+  margin: none; 
   overflow: hidden;
-  border:none; 
+  border: none; 
   background-color: transparent;
-}
+  max-width: 1066px;
 
-.tab button 
-{
-  color: #FFF; 
-  background-color: inherit;
-  float: left;
-  border: 1px solid #ccc;
-  outline: none;
-  cursor: pointer;
-  padding: 14px 16px;
-  transition: 0.3s;
-  font-size: 17px;
-}
+  & > button
+  {
+    color: #FFF; 
+    width: 50%;
+    background-color: inherit;
+    border: 1px solid #ccc;
+    outline: none;
+    margin: 0;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 
-.tab button:hover 
-{
-  background-color: #dddddda6;
-  color: #000;
-}
+    &:hover 
+    {
+      background-color: #ddd;
+      color: #000;
+    }
+  }
 
-.tab button.active 
-{
-  background-color: #ddd;
-  color: #000;
+  & > .active
+  {
+    background-color: #ddd;
+    color: #000;
+  }
 }
 
 .tabcontent 
 {
   display: none;
+  max-width: 1066px;
   padding: 6px 12px;
   border: 1px solid #ccc;
   border-top: none;
-  width: 1068px;
 }
 
-#second-section {
-  height: 100vh;
-  width: 100%; 
-}
+// #second-section {
+//   position: relative;
+//   height: fit-content;
+//   width: 100%; 
+//   left: 0;
+// }
 
 #free-time-title
 {
@@ -150,15 +183,14 @@ max-width: 1066px;
 
 #free-time-div
 {
-  max-width: 75%;
-  left: 15%; 
+  left: 0%; 
   padding-bottom: 5%; 
   position: relative;
 }
 
 #lyrics-curator
 {
-  max-width: 75%;
+  position:relative;
   left: 0%; 
   padding-bottom: 5%; 
 }
@@ -168,15 +200,26 @@ max-width: 1066px;
   position: absolute;
   left: 0%; 
   top: 85%;
+  text-align: left;
   width: 75%;
   transition: all ease-in 0.7s;
 
-  & > button
-  {
-    border: none; 
-    color: white;
-    width: 60px; 
-    height: 60px;
+  & > #lyrics-curator-links
+  { 
+    margin-left: 5%;
+    &  > button
+    {
+      border: none; 
+      color: white;
+      width: 60px; 
+      height: 60px;
+    }
+
+    & > span
+    {
+      position: absolute;
+      transform: translateX(5%) translateY(33%);
+    }
   }
 
   & > h1
@@ -185,12 +228,6 @@ max-width: 1066px;
     font-weight: 100;
     font-size: 75px;
     white-space: nowrap;
-  }
-
-  & > span
-  {
-    position: absolute;
-    transform: translateX(5%) translateY(33%);
   }
 }
 
@@ -294,10 +331,11 @@ max-width: 1066px;
 {
   position: absolute;
   border: #FFF 1px solid;
+  max-width: 800px; //default size for my 17'' screen is 768px
   width: 40vw; 
   height: auto; 
   padding: 5px; 
-  right: -35%; 
+  right: -30%; 
   transition: all ease-in 0.7s;
 
   & > img
@@ -310,7 +348,7 @@ max-width: 1066px;
   {
     padding: 0px;
     border: #FFF 0px solid;
-    right: -10%;
+    right: 0%;
   }
 }
 
