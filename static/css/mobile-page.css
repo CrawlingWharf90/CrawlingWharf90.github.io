@@ -1,0 +1,42 @@
+@import url("https://fonts.googleapis.com/css2?family=Karantina&display=swap");
+body {
+  background-color: #000;
+  color: #FFF;
+  font-size: 24px;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 500;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+#mobile-image {
+  position: relative;
+  width: 75vw;
+  height: auto;
+  margin-bottom: 10vh;
+}
+#mobile-image > img {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+#mobile-message {
+  position: relative;
+}
+#mobile-message > p {
+  width: fit-content;
+  text-align: center;
+}
+#mobile-message > span {
+  width: 100%;
+  text-align: left;
+}
+
+/*# sourceMappingURL=mobile-page.css.map */

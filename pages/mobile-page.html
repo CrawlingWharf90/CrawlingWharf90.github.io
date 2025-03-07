@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nadav Moscovici - mobile warning</title>
+    <link rel="stylesheet" href="../static/css/mobile-page.css">
+</head>
+<body>
+    <div id="mobile-image">
+        <img src="../static/temp/webisteGif.gif" alt="Dog Rolling Gif">
+    </div>
+    <div id="mobile-message">
+        <p>
+            Hi! This site isn't mobile-friendly yet due to time constraints caused by my being a university student. 
+            <br>
+            For the best experience, please use a desktop device. 
+            <br>
+            Thanks for understanding! 
+        </p>
+        <span>- Nadav</span>
+    </div>
+
+    <script>
+        function checkOrientation() {
+            const mobileImage = document.getElementById('mobile-image');
+            if (window.innerHeight < window.innerWidth) {
+                mobileImage.style.display = 'none';
+            } else {
+                mobileImage.style.display = 'block';
+            }
+        }
+
+        window.addEventListener('resize', checkOrientation);
+        window.addEventListener('load', checkOrientation);
+    </script>
+</body>
+</html>
