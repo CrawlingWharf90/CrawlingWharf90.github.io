@@ -9,6 +9,7 @@ const sectionTitle = document.getElementById("section-title");
 const freeTimeDiv = document.getElementById("free-time-div");
 const imgContainer = document.getElementById("lyrics-curator-img");
 const textContainer = document.getElementById("lyrics-curator-div");
+const mailButton = document.getElementById("mail-btn"); 
 const path = "..\\AboutMe\\";
 const freeTimeText = "WHAT ABOUT MY FREE TIME?";
 var scrollStep = 7; 
@@ -124,6 +125,13 @@ function openEdu(evt, schoolName) {
 //   //   }
 // }); 
 
+//! window.addEventListener('wheel', (e) => {
+//!   if (document.getElementById("mail-modal"))
+//!   {
+//!     e.preventDefault();
+//!   }
+//! }, { passive: false }); 
+
 window.addEventListener('scroll', () => {
   lastScrollY = window.scrollY;
 
@@ -219,3 +227,152 @@ function centerElement(elements) {
   
 //   edu.style.marginTop = `${calculatedMargin}px`;
 //}
+
+mailButton.addEventListener('click', () => {
+  if(document.getElementById("mail-modal")) return;
+  let mailModalBackground = document.createElement('div');
+  mailModalBackground.id = "mail-modal-background";
+  mailModalBackground.addEventListener("click", () => {
+    closeMailModal();
+  });
+
+  let mailModal = document.createElement('div'); 
+  mailModal.id = "mail-modal";
+  mailModal.innerHTML = `
+    <div id="your-email">
+      <span><h5>Your Email:</h5><input type="email" id="email-input" placeholder="Enter your email here..."></span>
+    </div>
+  `;
+  mailModal.style.transform = "translate(-50%, 200%)";
+  document.body.appendChild(mailModalBackground);
+  document.body.appendChild(mailModal);
+  
+  setTimeout(() => {
+    mailModal.style.transform = "translate(-50%, 50%)";
+    mailModalBackground.style.opacity = "0.8";
+  }, 100);
+});
+
+document.addEventListener("keydown", (e) => {
+  let mailModal = document.getElementById("mail-modal");
+  if(e.key === "Enter" && mailModal)
+  {
+    let email = document.getElementById("email-input").value;
+    if(emailRules(email))
+    {
+      let typedEmail = email;
+      mailModal.innerHTML += `
+        <div id="subject">
+          <span><h5>Subject:</h5><input type="text" id="subject-input" placeholder="Email subject here..."></span>
+        </div>
+        <div id="message">
+          <span><h4>Message:</h4></span><textarea id="message-input" placeholder="Type your email here..."></textarea>
+        </div>
+        <div id="send-email">
+          <button id="send-email-btn">Send</button>
+        </div>
+        `;
+
+        for(let i=1; i<mailModal.children.length; i++)
+        {
+          mailModal.children[i].style.opacity = "0"; 
+        }
+        document.getElementById("email-input").value = typedEmail;
+        setTimeout(() => {
+          for(let i=1; i<mailModal.children.length; i++)
+          {
+            mailModal.children[i].style.opacity = "1"; 
+          }
+        }, 10);
+
+        document.getElementById("send-email-btn").addEventListener("click", () => {
+          let message = document.getElementById("message-input").value;
+          let possibleMailChange = document.getElementById("email-input").value;
+          if(message.length == 0)
+          {
+            alert("Message can't be empty!");
+            return;
+          }
+          if(!emailRules(possibleMailChange))
+          {
+            alert("It seems you've changed the previously provided email with an invaild one. Please try again.\n\n an email address looks like: something@example.com"); 
+            return; 
+          }
+          //?if no errors, send email
+          sendEmail(); 
+          closeMailModal();
+        }), {once: true};
+    }
+    else
+    {
+      alert("What you've provided doesn't look like an email address. Please try again.\n\n an email address looks like: something@example.com");
+    }
+  }
+});
+
+function emailRules(mail)
+{
+  /* 
+    * Email must contain "@" and "."
+    * @ must be followed by a domanin name (so there must me at least one character between @ and .)
+    * after "." there must be a domain name (so there must be at least one character after .)
+  */
+  return mail.includes("@") && mail.includes(".") && (mail.indexOf(".") > mail.indexOf("@")+1) && (mail.lastIndexOf(".") < mail.length-1);
+}
+
+function closeMailModal()
+{
+  let mailModal = document.getElementById("mail-modal");
+  let mailModalBackground = document.getElementById("mail-modal-background");
+  if(!mailModal || !mailModalBackground) return;
+  mailModal.style.transform = "translate(-50%, 200%)";
+  mailModalBackground.style.opacity = "0";
+  setTimeout(() => {
+    mailModal.remove();
+    mailModalBackground.remove();
+  }, 800);
+}
+
+async function sendEmail() {
+  if (!document.getElementById("mail-modal") || !document.getElementById("message-input") || !document.getElementById("subject-input")) return;
+    
+    const email = document.getElementById("email-input").value;
+    const subject = document.getElementById("subject-input").value;
+    const content = document.getElementById("message-input").value;
+
+    // Create a form dynamically
+    let form = document.createElement("form");
+    form.action = "https://formsubmit.co/f31de7e3ccc876e7fc65dcb9c1b52625";
+    form.method = "POST";
+    form.style.display = "none";
+
+    //! Add required hidden field to prevent spam protection issues
+    let hiddenField = document.createElement("input");
+    hiddenField.type = "hidden";
+    hiddenField.name = "_captcha";
+    hiddenField.value = "false";
+    form.appendChild(hiddenField);
+
+    let emailField = document.createElement("input");
+    emailField.type = "hidden";
+    emailField.name = "email";
+    emailField.value = email;
+    form.appendChild(emailField);
+
+    let subjectField = document.createElement("input");
+    subjectField.type = "hidden";
+    subjectField.name = "subject";
+    subjectField.value = subject;
+    form.appendChild(subjectField);
+
+    let messageField = document.createElement("input");
+    messageField.type = "hidden";
+    messageField.name = "message";
+    messageField.value = content;
+    form.appendChild(messageField);
+
+    document.body.appendChild(form);
+    form.submit();
+
+    alert("Email sent successfully!");
+}

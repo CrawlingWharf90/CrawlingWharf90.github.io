@@ -10,6 +10,7 @@ body {
   text-shadow: 0.5px 0.5px 0.5px rgba(255, 255, 255, 0.5);
   overflow-x: hidden;
   overflow-y: hidden;
+  display: flex;
 }
 
 #go-back-btn {
@@ -151,5 +152,3 @@ body {
 #project-description-link > a:hover {
   text-decoration: underline #FFF 3px;
 }
-
-/*# sourceMappingURL=projects.css.map */

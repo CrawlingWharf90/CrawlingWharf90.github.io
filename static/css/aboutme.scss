@@ -46,7 +46,7 @@ body
   }
 }
 
-#TAAG /*TODO: make text resize and disappear on window width change*/
+#TAAG
 {
   position: relative;
   max-width: 1050px;
@@ -483,4 +483,117 @@ body
       }
     }
   }
+}
+
+#mail-modal-background
+{
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  background-color: #000; 
+  opacity: 0;
+  transition: all ease-in 0.8s;
+  z-index: 9998;
+  top: 0; 
+  left: 0;
+}
+
+#mail-modal
+{
+  padding: 20px;
+  color: #FFF; 
+  text-align: left;
+  font-size: 16px;
+  font-family: 'Courier New', Courier, monospace;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  max-width: 1000px;
+  max-height: 500px;
+  background-color: #000;
+  outline: white 1px solid;
+  top: 0; 
+  left: 50%;
+  transform: translate(-50%, 50%);
+  transition: all ease-out 0.75s; 
+  z-index: 9999;
+
+  & > div 
+  {
+    width: 100%;
+    transition: opacity ease-in 0.3s;
+
+    & > span 
+    {
+      width: 100%;
+      display: flex;
+      white-space: nowrap;
+      & > h5
+      {
+        width: fit-content; 
+      }
+      & > input
+      {
+        color: #FFF; 
+        border: none;
+        background-color: transparent;
+        width: 100%;
+        margin-bottom: .5rem;
+        margin-left: .5rem;
+
+        &:focus
+        {
+          outline: none;
+        }
+      } 
+    }
+
+    & > textarea
+    {
+      color: #FFF; 
+      border: 2px dotted #FFF;
+      background-color: transparent;
+      width: 100%;
+      height: 250px; 
+      padding: 10px;
+      overflow-y: scroll;
+      margin-bottom: .5rem;
+      margin-left: .5rem;
+      resize: none;
+
+      &:focus
+      {
+        outline: none;
+      }
+    }
+
+    & > button
+    {
+      color: rgba(255, 255, 255, 0.4); 
+      background-color: transparent;
+      border: rgba(255, 255, 255, 0.4) 1px solid;  
+      font-size: 24px;
+      font-weight: 900;
+      transition: all ease-in-out 0.3s;
+      margin-top: 1rem;
+
+      &:hover
+      {
+        color: #FFFFFF;
+        border: #FFF 1px solid;
+      }
+    }
+  }
+}
+
+#subject
+{
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+#send-email
+{
+  bottom: 0; 
+  text-align: center;
 }
