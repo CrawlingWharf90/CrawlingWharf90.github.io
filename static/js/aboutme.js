@@ -255,7 +255,8 @@ mailButton.addEventListener('click', () => {
 
 document.addEventListener("keydown", (e) => {
   let mailModal = document.getElementById("mail-modal");
-  if(e.key === "Enter" && mailModal)
+  let subject = document.getElementById("subject-input");
+  if(e.key === "Enter" && mailModal && !subject) //for some reason the return with child count doesn't work on pages but it seems to work just fine in the local build, hopefully the subject check will be enough to fix this
   {
     let email = document.getElementById("email-input").value;
     if(emailRules(email))
