@@ -11,6 +11,10 @@
 /.idea
 /.vscode
 
+# Ignore make files
+*.make
+*.mak
+
 # Ignore logs
 npm-debug.log*
 yarn-debug.log*
