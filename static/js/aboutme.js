@@ -260,6 +260,7 @@ document.addEventListener("keydown", (e) => {
     let email = document.getElementById("email-input").value;
     if(emailRules(email))
     {
+      if(mailModal.children.length > 1) return;
       let typedEmail = email;
       mailModal.innerHTML += `
         <div id="subject">
@@ -284,6 +285,8 @@ document.addEventListener("keydown", (e) => {
             mailModal.children[i].style.opacity = "1"; 
           }
         }, 10);
+
+
 
         document.getElementById("send-email-btn").addEventListener("click", () => {
           let message = document.getElementById("message-input").value;
