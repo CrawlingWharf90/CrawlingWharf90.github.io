@@ -23,7 +23,7 @@ var lastDirection = "";
 var ticking = false;
 var freeTimeEffect = false; 
 var effectStarted = false;
-
+//
 const elementsToCenter = [edu, TAAG, secondSection]
 
 document.addEventListener("DOMContentLoaded", function () {
