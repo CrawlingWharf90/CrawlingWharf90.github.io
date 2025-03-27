@@ -405,7 +405,7 @@ body {
   max-height: 500px;
   background-color: #000;
   outline: white 1px solid;
-  top: 0;
+  top: 0%;
   left: 50%;
   transform: translate(-50%, 50%);
   transition: all ease-out 0.75s;

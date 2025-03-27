@@ -23,7 +23,7 @@ var lastDirection = "";
 var ticking = false;
 var freeTimeEffect = false; 
 var effectStarted = false;
-//
+
 const elementsToCenter = [edu, TAAG, secondSection]
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -243,7 +243,7 @@ mailButton.addEventListener('click', () => {
       <span><h5>Your Email:</h5><input type="email" id="email-input" placeholder="Enter your email here..."></span>
     </div>
   `;
-  mailModal.style.transform = "translate(-50%, 200%)";
+  mailModal.style.transform = "translate(-50%, 250%)";
   document.body.appendChild(mailModalBackground);
   document.body.appendChild(mailModal);
   
@@ -255,8 +255,7 @@ mailButton.addEventListener('click', () => {
 
 document.addEventListener("keydown", (e) => {
   let mailModal = document.getElementById("mail-modal");
-  let subject = document.getElementById("subject-input");
-  if(e.key === "Enter" && mailModal && !subject) //for some reason the return with child count doesn't work on pages but it seems to work just fine in the local build, hopefully the subject check will be enough to fix this
+  if(e.key === "Enter" && mailModal)
   {
     let email = document.getElementById("email-input").value;
     if(emailRules(email))

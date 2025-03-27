@@ -12,6 +12,10 @@ const defaultProjectDescription = "Click on the Projects to the side to learn ab
 const defaultProjectImage = "https://images.unsplash.com/photo-1554086201-d442c066dcf9?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"; // Set the image that should be displayed when no project is selected
 var projectSelected = false; // Set to true when a project is selected
 
+const Type = {
+    PROJECT: "Project",
+    CONTRIBUTION: "Contribution",
+};
 
 class Link
 {
@@ -24,8 +28,9 @@ class Link
 
 class  Project
 {
-    constructor(name, description, image, link)
+    constructor(type, name, description, image, link)
     {
+        this.type = type;
         this.name = name;
         this.description = description;
         this.image = image;
@@ -34,6 +39,7 @@ class  Project
 }
 
 let projects = [];
+let sortedProjects = [];
 
 //? Function to fetch JSON and populate the projects array
 async function loadProjects() {
@@ -44,6 +50,7 @@ async function loadProjects() {
         const data = await response.json();
         
         projects = data.map(p => new Project(
+            p.type,
             p.name,
             p.description,
             p.image,
@@ -65,7 +72,23 @@ document.addEventListener("DOMContentLoaded", function() {
             // console.log("Projects DOM Loaded");
             projectSelected = false;
             defaultBHVR();
-            projects.forEach(project => {
+
+            sortedProjects = [...projects].sort((a, b) => {
+                if (a.type === Type.PROJECTS && b.type !== Type.PROJECTS) return -1;
+                if (a.type !== Type.PROJECTS && b.type === Type.PROJECTS) return 1;
+                if (a.type === Type.CONTRIBUTION && b.type !== Type.CONTRIBUTION) return 1;
+                if (a.type !== Type.CONTRIBUTION && b.type === Type.CONTRIBUTION) return -1;
+                return 0;
+            });
+            
+            let hasDivider = false;
+            
+            sortedProjects.forEach((project, index) => {
+                if (!hasDivider && project.type === Type.CONTRIBUTION) {
+                    projectContainer.innerHTML += `<div class="divider">Notable Contributions</div>`;
+                    hasDivider = true;
+                }
+            
                 projectContainer.innerHTML += `
                     <button class="project-button">${project.name.toUpperCase()}</button>
                 `;
@@ -80,42 +103,43 @@ document.addEventListener("DOMContentLoaded", function() {
                 // // }
             });
 
-            Array.from(projectContainer.children).forEach(projectButton => {
+            Array.from(projectContainer.children).filter(child => child.tagName === 'BUTTON').forEach(projectButton => {
+                const buttonContainer = Array.from(projectContainer.children).filter(child => child.tagName === 'BUTTON'); 
                 projectButton.addEventListener("click", function(event) 
                 {
                     if(!projectButton.classList.contains("project-button-active"))
                     {
                         projectSelected = true;
                         projectButton.classList.add("project-button-active");
-                        for(let i = 0; i < projectContainer.children.length; i++)
+                        for(let i = 0; i < buttonContainer.length; i++)
                         {
-                            if(projectContainer.children[i] != event.target)
+                            if(buttonContainer[i] != event.target)
                             {
-                                projectContainer.children[i].classList.remove("project-button-active");
+                                buttonContainer[i].classList.remove("project-button-active");
                             }
                         }
-                        let projectIndex = Array.from(projectContainer.children).indexOf(event.target);
+                        let projectIndex = Array.from(buttonContainer).indexOf(event.target);
                         backgroundImage.style.opacity = 0; 
                         projectDescriptionText.style.opacity = 0;
                         projectDescriptionLink.style.opacity = 0;
                         setTimeout(() => {
-                            projectDescriptionText.innerHTML = projects[projectIndex].description;
+                            projectDescriptionText.innerHTML = sortedProjects[projectIndex].description;
                             projectDescriptionText.style.opacity = 1;
-                            if(projects[projectIndex].link.address == "") //? Check if the link is empty
+                            if(sortedProjects[projectIndex].link.address == "") //? Check if the link is empty
                             {
                                 projectDescriptionLink.style.display = "none";
                             }
                             else
                             {
                                 projectDescriptionLink.style.display = "block";
-                                projectDescriptionLink.innerHTML = `<a target="_blank">${projects[projectIndex].link.preview}</a>`;
-                                projectDescriptionLink.querySelector('a').href = projects[projectIndex].link.address;
+                                projectDescriptionLink.innerHTML = `<a target="_blank">${sortedProjects[projectIndex].link.preview}</a>`;
+                                projectDescriptionLink.querySelector('a').href = sortedProjects[projectIndex].link.address;
                                 projectDescriptionLink.style.opacity = 1;
                             }
-                            backgroundImage.style.backgroundImage = `url(${projects[projectIndex].image})`; //!this might need to be changed to a path later on
+                            backgroundImage.style.backgroundImage = `url(${sortedProjects[projectIndex].image})`;
                             backgroundImage.style.opacity = 0.25;
                         }, 500);
-                        textEffect(projects[projectIndex].name.toUpperCase());
+                        textEffect(sortedProjects[projectIndex].name.toUpperCase());
                     }
                     else
                     {

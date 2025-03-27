@@ -120,10 +120,18 @@ body {
   overflow-y: auto;
   overflow-x: hidden;
   padding: 0%, 2%, 2%, 2%;
-  margin-top: 2%;
+  margin-top: 10vh;
   display: block;
   text-align: center;
   transition: all linear 0.5s;
+}
+#project-description-text > a {
+  color: #FFF;
+  text-decoration: wavy underline #FFF 2px;
+  transition: text-decoration linear 0.5s;
+}
+#project-description-text > a:hover {
+  text-decoration: wavy underline #aa8fc6 2px;
 }
 
 #project-description-link {
@@ -133,9 +141,9 @@ body {
   top: 72%;
   left: 30%;
   text-align: center;
+  margin-top: 5vh;
   z-index: 5;
 }
-
 #project-description-link > a {
   color: #FFFFFF;
   text-decoration: none;
@@ -151,4 +159,17 @@ body {
 }
 #project-description-link > a:hover {
   text-decoration: underline #FFF 3px;
+}
+
+.divider {
+  text-decoration: double underline #FFF 1px;
+  transform: rotateY(180deg);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-left: 10%;
+  padding-top: 5%;
+}
+.divider:hover {
+  cursor: default;
 }

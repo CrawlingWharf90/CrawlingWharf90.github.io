@@ -135,11 +135,23 @@ body
     overflow-y: auto;
     overflow-x: hidden; 
     padding: 0%, 2%, 2%, 2%;
-    margin-top: 2%;
+    margin-top: 10vh;
     display: block;
     text-align: center;
     //outline: 2px solid red;
-    transition: all linear 0.5s;        
+    transition: all linear 0.5s;      
+    
+    & > a
+    {
+        color: #FFF; 
+        text-decoration: wavy underline #FFF 2px;
+        transition: text-decoration linear 0.5s;
+
+        &:hover
+        {
+            text-decoration: wavy underline #aa8fc6 2px;
+        }
+    }
 }
 
 #project-description-link
@@ -150,27 +162,44 @@ body
     top: 72%;
     left: 30%;
     text-align: center;
+    margin-top: 5vh;
     //outline: 2px solid green; 
     z-index: 5;
+
+    & > a
+    {
+        color: #FFFFFF; 
+        text-decoration: none;
+        width: fit-content;
+        height: 100%;
+        font-size: 24px;
+        font-weight: 500;
+        z-index: 5;
+        text-align: center;
+        white-space: nowrap;
+        transition: all linear 0.5s;
+        //outline: 2px solid blue;
+        z-index: 6;
+
+        &:hover
+        {
+            text-decoration: underline #FFF 3px;
+        }
+    }
 }
 
-#project-description-link > a
+.divider
 {
-    color: #FFFFFF; 
-    text-decoration: none;
-    width: fit-content;
-    height: 100%;
-    font-size: 24px;
-    font-weight: 500;
-    z-index: 5;
-    text-align: center;
+    text-decoration: double underline #FFF 1px;
+    transform: rotateY(180deg);
     white-space: nowrap;
-    transition: all linear 0.5s;
-    //outline: 2px solid blue;
-    z-index: 6;
-
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-left: 10%;
+    padding-top: 5%; 
+    
     &:hover
     {
-        text-decoration: underline #FFF 3px;
+        cursor: default;
     }
 }
