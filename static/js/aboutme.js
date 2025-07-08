@@ -240,7 +240,7 @@ mailButton.addEventListener('click', () => {
   mailModal.id = "mail-modal";
   mailModal.innerHTML = `
     <div id="your-email">
-      <span><h5>Your Email:</h5><input type="email" id="email-input" placeholder="Enter your email here..."></span>
+      <span><h5>Your Email Address:</h5><input type="email" id="email-input" placeholder="Enter your email address here..."></span>
     </div>
   `;
   mailModal.style.transform = "translate(-50%, 250%)";
