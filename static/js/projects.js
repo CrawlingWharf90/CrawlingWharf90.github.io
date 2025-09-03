@@ -9,7 +9,8 @@ const projectDescriptionLink = document.querySelector("#project-description-link
 // // const quicklyPopolate = false; //! Set to true to quickly populate the project list with dummy data (for development purposes)
 const defaultProjectName = "Choose One Project"; // Set the string that should be displayed when no project is selected
 const defaultProjectDescription = "Click on the Projects to the side to learn about them"; // Set the string that should be displayed when no project is selected
-const defaultProjectImage = "https://images.unsplash.com/photo-1554086201-d442c066dcf9?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"; // Set the image that should be displayed when no project is selected
+//? Had to convert to image to WEBP for efficency -> Here's the original link for credit (https://images.unsplash.com/photo-1554086201-d442c066dcf9?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)
+const defaultProjectImage = "https://res.cloudinary.com/dciliogd4/image/upload/v1756931020/photo-1554086201-d442c066dcf9_bscrsg.webp"; // Set the image that should be displayed when no project is selected
 var projectSelected = false; // Set to true when a project is selected
 
 const Type = {

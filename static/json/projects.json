@@ -3,7 +3,7 @@
     "type": "Project", 
     "name": "Sputofy",
     "description": "Sputofy Media Player is a self-hosted music player designed for seamless streaming across all your devices. Share your favorite tracks with friends and keep your library organized with customizable playlists. The intuitive home page makes discovering what to play next effortless, offering quick access to your most-loved songs and recommendations based on your listening habits. Enjoy a smooth, personalized music experience while staying in control of your collection.",
-    "image": "https://res.cloudinary.com/dciliogd4/image/upload/v1740935605/Sputofy_NewName_tzsfq8.png",
+    "image": "https://res.cloudinary.com/dciliogd4/image/upload/v1756930869/Sputofy_NewName_tzsfq8_sjhs7b.webp",
     "link": {
       "preview": "",
       "address": "https://github.com/CrawlingWharf90/Sputofy_Media_Player"
@@ -13,7 +13,7 @@
     "type": "Project",
     "name": "Schmolax Metadata Editor",
     "description": "Schmolax Metadata Editor is a powerful tool for editing song metadata, allowing you to easily update and customize tags for MP3 and FLAC files. With built-in web scraping, it can automatically retrieve missing details like album art, artist names, and release dates. Its intuitive interface ensures quick and precise metadata management, helping you keep your music library well-organized and accurate with minimal effort.",
-    "image": "https://res.cloudinary.com/dciliogd4/image/upload/v1740937655/Schmolax_MediaPlayer_FullBG_zjqiym.png",
+    "image": "https://res.cloudinary.com/dciliogd4/image/upload/v1756930677/Schmolax_MediaPlayer_FullBG_zjqiym_vdqiue.webp",
     "link": {
       "preview": "Check It Out",
       "address": "https://github.com/DomeInteractiveStudios/Schmolax_Metadata_Editor"
@@ -23,7 +23,7 @@
     "type": "Project",
     "name": "Crawling Typer",
     "description": "NPM crawling-typer is a js node package made to easily implement the stylish effect of typing an array of words one character at the time.<br>Quickly customize settings such as typing speed, delete speed, pause time between one word and the next, number of times the effect should loop and effect behavior after said number (if finite) of loops has concluded. ",
-    "image": "https://res.cloudinary.com/dciliogd4/image/upload/v1740938161/Crawling-Typer-image_onpemh.png",
+    "image": "https://res.cloudinary.com/dciliogd4/image/upload/v1756930574/Crawling-Typer-image_onpemh_g2ksp6.webp",
     "link": {
       "preview": "View on NPM",
       "address": "https://www.npmjs.com/package/crawling-typer"
@@ -33,7 +33,7 @@
     "type": "Project",
     "name": "Automaton Designer",
     "description": "A tool for designing and simulating finite state automata, made with C# and using Unity as a front end tool.<br>Features include: <br>Graphical design of automata<br>Simulation of automata",
-    "image": "https://res.cloudinary.com/dciliogd4/image/upload/v1740910350/FSA_pj5fid.png",
+    "image": "https://res.cloudinary.com/dciliogd4/image/upload/v1756930834/FSA_pj5fid_qjou30.webp",
     "link": {
       "preview": "View Repository",
       "address": "https://github.com/DomeInteractiveStudios/Automaton_Designer"
@@ -43,7 +43,7 @@
     "type": "Contribution",
     "name": "PoliTalks Ep. 40",
     "description": "I was invited to participate in the 40th episode of PoliTalks, a podcast made by the students of Polimi for scientific dissemination. We talked about the evolution of 3D rendering and the history of gaming, and all the challenges and advancements that videogames brought through-out the years.<br>It was a great opportunity to share my insights and engage in a lively discussion with the hosts.<br>Check out the full unedited episode here -> <a href='https://youtu.be/7ipZXbDLZcc'>Uncut version</a>",
-    "image": "https://res.cloudinary.com/dciliogd4/image/upload/v1743090541/Poli_Talks_Banner_kaajav.png",
+    "image": "https://res.cloudinary.com/dciliogd4/image/upload/v1756930488/Poli_Talks_Banner_kaajav_ptyurk.webp",
     "link": {
       "preview": "Listen to the episode on Spotify",
       "address": "https://open.spotify.com/episode/3ZISZe1TObawVmYUxwQZMe?si=b2feff0e01874334"
