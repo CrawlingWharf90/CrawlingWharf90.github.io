@@ -23,17 +23,61 @@
     </div>
 
     <script>
-        function checkOrientation() {
+        function updateMessageBasedOnUA() {
+            const isMobileUA = /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            const mobileMessage = document.getElementById('mobile-message');
             const mobileImage = document.getElementById('mobile-image');
-            if (window.innerHeight < window.innerWidth) {
-                mobileImage.style.display = 'none';
-            } else {
+
+            if (isMobileUA) {
+                //? Default mobile warning
                 mobileImage.style.display = 'block';
+                mobileMessage.innerHTML = `
+                    <p>
+                        Hi! This site isn't mobile-friendly yet due to time constraints caused by my being a university student. 
+                        <br>
+                        For the best experience, please use a desktop device. 
+                        <br>
+                        Thanks for understanding! 
+                    </p>
+                    <span>- Nadav</span>
+                `;
+            } else {
+                //? Easter Egg for "desktop site" requests
+                mobileImage.style.display = 'none';
+                mobileMessage.innerHTML = `
+                    <p>
+                        Did you try to request the desktop version?<br>
+                        Come on man!<br><br>
+                        You know better than this!<br><br>
+                        Kindly use a desktop device.
+                    </p>
+                    <span>- Nadav</span>
+                `;
             }
         }
 
-        window.addEventListener('resize', checkOrientation);
-        window.addEventListener('load', checkOrientation);
+        function checkOrientation() {
+            const mobileImage = document.getElementById('mobile-image');
+            const isMobileUA = /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+            if (isMobileUA) {
+                if (window.innerHeight < window.innerWidth) {
+                    mobileImage.style.display = 'none';
+                } else {
+                    mobileImage.style.display = 'block';
+                }
+            }
+        }
+
+        window.addEventListener('load', () => {
+            updateMessageBasedOnUA();
+            checkOrientation();
+        });
+
+        window.addEventListener('resize', () => {
+            updateMessageBasedOnUA();
+            checkOrientation();
+        });
     </script>
 </body>
 </html>
