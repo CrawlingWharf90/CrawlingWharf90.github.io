@@ -286,8 +286,6 @@ document.addEventListener("keydown", (e) => {
           }
         }, 10);
 
-
-
         document.getElementById("send-email-btn").addEventListener("click", () => {
           let message = document.getElementById("message-input").value;
           let possibleMailChange = document.getElementById("email-input").value;
@@ -298,13 +296,19 @@ document.addEventListener("keydown", (e) => {
           }
           if(!emailRules(possibleMailChange))
           {
-            alert("It seems you've changed the previously provided email with an invaild one. Please try again.\n\n an email address looks like: something@example.com"); 
+            alert("It seems you've changed the previously provided email with an invaild one. Please try again.\n\nAn email address looks like: something@example.com"); 
             return; 
           }
           //?if no errors, send email
           sendEmail(); 
           closeMailModal();
-        }), {once: true};
+        });
+
+        document.addEventListener("keydown", (ev) => {
+          if(ev.key === "Enter" && mailModal)
+          {
+            document.getElementById("send-email-btn").click();
+          }});
     }
     else
     {
@@ -377,5 +381,5 @@ async function sendEmail() {
     document.body.appendChild(form);
     form.submit();
 
-    alert("Email sent successfully!");
+    alert("Thank you for reaching out, I'll get back to you as soon as possible.\nPlease wait a few seconds for the form submission to complete.\nYou can close this alert now, but DO NOT leave the page until the form is submitted.");
 }
