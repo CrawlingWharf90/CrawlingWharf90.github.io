@@ -472,3 +472,52 @@ body {
   bottom: 0;
   text-align: center;
 }
+
+#loading-div {
+  width: 10vw;
+  height: 5vh;
+  position: fixed;
+  right: 2vw;
+  bottom: 3vh;
+  background-color: #000;
+  color: #FFF;
+  font-family: "Karantina", system-ui;
+  font-weight: 100;
+  font-size: 32px;
+}
+
+.loader-container {
+  width: var(loader-div-width);
+  display: flex;
+  align-items: center;
+  border: #FFF 2px solid;
+}
+
+.loader {
+  margin-left: 5%;
+  position: relative;
+  width: 30px;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  background: conic-gradient(#000 0%, #fff 100%);
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 4px), black calc(100% - 3px));
+  mask: radial-gradient(farthest-side, transparent calc(100% - 4px), black calc(100% - 3px));
+  animation: spin 1.5s ease-in-out infinite;
+}
+
+.loader-text {
+  white-space: nowrap;
+  overflow-x: visible;
+  overflow-y: hidden;
+  margin-left: 15%;
+  width: fit-content;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

@@ -320,11 +320,24 @@ document.addEventListener("keydown", (e) => {
 function emailRules(mail)
 {
   /* 
+    * Before the "@" there can be anything (at least one character)
     * Email must contain "@" and "."
-    * @ must be followed by a domanin name (so there must me at least one character between @ and .)
+    * @ must be followed by a domain name (so there must be at least one character between @ and .)
     * after "." there must be a domain name (so there must be at least one character after .)
   */
-  return mail.includes("@") && mail.includes(".") && (mail.indexOf(".") > mail.indexOf("@")+1) && (mail.lastIndexOf(".") < mail.length-1);
+  const atIndex = mail.indexOf("@");
+  if (atIndex < 1) return false;
+
+  //const local = mail.slice(0, atIndex);
+  const domain = mail.slice(atIndex + 1);
+
+  if (!domain || domain.startsWith(".") || domain.endsWith(".")) return false;
+  if ((domain.match(/\./g) || []).length !== 1) return false;
+
+  const dotIndex = domain.indexOf(".");
+  if (dotIndex < 1 || dotIndex === domain.length - 1) return false;
+
+  return true;
 }
 
 function closeMailModal()
@@ -382,4 +395,13 @@ async function sendEmail() {
     form.submit();
 
     alert("Thank you for reaching out, I'll get back to you as soon as possible.\nPlease wait a few seconds for the form submission to complete.\nYou can close this alert now, but DO NOT leave the page until the form is submitted.");
+    showFormLoading()
+}
+
+function showFormLoading()
+{
+  const loadingDiv = document.createElement("div"); 
+  loadingDiv.id = "loading-div";
+  loadingDiv.innerHTML = `<div class="loader-container"><div class="loader"></div><span class="loader-text">Sending Email</span></div>`;
+  document.body.appendChild(loadingDiv); 
 }
