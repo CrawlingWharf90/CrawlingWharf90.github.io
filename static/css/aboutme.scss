@@ -508,6 +508,7 @@ body
   width: 100vw;
   height: 100vh;
   position: fixed;
+  padding-bottom: 1rem;
   max-width: 1000px;
   max-height: 500px;
   background-color: #000;
@@ -554,7 +555,8 @@ body
       border: 2px dotted #FFF;
       background-color: transparent;
       width: 100%;
-      height: 250px; 
+      height: fit-content;
+      min-height: 250px; 
       padding: 10px;
       overflow-y: scroll;
       margin-bottom: .5rem;
@@ -583,6 +585,14 @@ body
         border: #FFF 1px solid;
       }
     }
+
+    & > #alt-send-email
+    {
+      margin-top: 5px;
+      font-size: 14px;
+      color: #fff;
+      transition: opacity ease-in 0.15s;
+    }
   }
 }
 
@@ -595,6 +605,7 @@ body
 #send-email
 {
   bottom: 0; 
+  height: fit-content;
   text-align: center;
 }
 

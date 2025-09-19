@@ -271,8 +271,19 @@ document.addEventListener("keydown", (e) => {
         </div>
         <div id="send-email">
           <button id="send-email-btn">Send</button>
+          <div id="alt-send-email">or press <b>Alt + Enter</b></div>
         </div>
         `;
+
+        const sendButton = document.getElementById("send-email-btn");
+        const altSendInfo = document.getElementById("alt-send-email");
+
+        sendButton.addEventListener("mouseenter", () => {
+          altSendInfo.style.opacity = "0.4";
+        });
+        sendButton.addEventListener("mouseleave", () => {
+          altSendInfo.style.opacity = "1";
+        });
 
         for(let i=1; i<mailModal.children.length; i++)
         {
@@ -305,7 +316,7 @@ document.addEventListener("keydown", (e) => {
         });
 
         document.addEventListener("keydown", (ev) => {
-          if(ev.key === "Enter" && mailModal)
+          if(ev.key === "Enter" && ev.altKey && mailModal)
           {
             document.getElementById("send-email-btn").click();
           }});
