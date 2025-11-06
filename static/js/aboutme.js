@@ -1,3 +1,7 @@
+import { CrawlingTools } from "./tools.js";
+
+var lastScroll = 0;
+var lastScrollY = 0;
 var blurAmount;
 var windowHeight;
 var virtualScrollY = 0;
@@ -9,19 +13,19 @@ const sectionTitle = document.getElementById("section-title");
 const freeTimeDiv = document.getElementById("free-time-div");
 const imgContainer = document.getElementById("lyrics-curator-img");
 const textContainer = document.getElementById("lyrics-curator-div");
-const mailButton = document.getElementById("mail-btn"); 
+const mailButton = document.getElementById("mail-btn");
 const path = "..\\AboutMe\\";
 const freeTimeText = "WHAT ABOUT MY FREE TIME?";
-var scrollStep = 7; 
+var scrollStep = 7;
 const saveTAAGPosition = TAAG.getBoundingClientRect();
 const saveEduPosition = edu.getBoundingClientRect();
 const baseMargin = 50;
 const heightFactor = 0.5;
 var locked = false;
-var scrollCounter = 0; 
-var lastDirection = ""; 
+var scrollCounter = 0;
+var lastDirection = "";
 var ticking = false;
-var freeTimeEffect = false; 
+var freeTimeEffect = false;
 var effectStarted = false;
 
 const elementsToCenter = [edu, TAAG, secondSection]
@@ -118,7 +122,7 @@ function openEdu(evt, schoolName) {
 //     TAAG.style.top = saveTAAGPosition.top + "px";
 //   }
 
-//   //!THIS WAS TO FIX A BUG THAT MIGHT HAPPEN IF THE USER SWITCHES BETWEEN MOUSE AND TRACKPAD WHILE SCROLLING, HOWEVER THE BUG IS VERY MINOR AND THE END RESULT IS MUCH WORSE IF THE SCRIPT HANDLES IT
+//   //!THIS WAS TO FIX TO A BUG THAT MIGHT HAPPEN IF THE USER SWITCHES BETWEEN MOUSE AND TRACKPAD WHILE SCROLLING, HOWEVER THE BUG IS VERY MINOR AND THE END RESULT IS MUCH WORSE IF THE SCRIPT HANDLES IT
 //   // if(effectStarted && edu.style.position == "relative" && window.scrollY < window.innerHeight)
 //   //   {
 //   //     if(freeTimeTitle.classList.contains("free-time-fixed")) freeTimeTitle.classList = "free-time-static";
@@ -185,8 +189,8 @@ function handleScroll(scrollY) {
 
 window.onresize = (e) => { //!TODO: education tab postion has to be changed on window resizing
   console.log("Window Resized");
-  screenCenter = window.innerWidth / 2;
-  windowHeight = window.innerHeight;
+  let screenCenter = window.innerWidth / 2;
+  let windowHeight = window.innerHeight;
   let additionalMargin = window.innerHeight * heightFactor;
   edu.style.marginTop = `${TAAG.getBoundingClientRect().height + baseMargin - additionalMargin}px`;
   centerElement(elementsToCenter);
@@ -203,13 +207,12 @@ function centerElement(elements) {
 
     const elemWidth = elem.offsetWidth;
 
-    if (getComputedStyle(elem).position === "absolute" || getComputedStyle(elem).position === "fixed") 
-    {
+    if (getComputedStyle(elem).position === "absolute" || getComputedStyle(elem).position === "fixed") {
       elem.style.left = "50%";
       elem.style.transform = "translateX(-50%)";
     } else {
-      elem.style.marginLeft += `${screenCenter - elemWidth/2}px`;
-      elem.style.marginRight += `${screenCenter - elemWidth/2}px`;
+      elem.style.marginLeft += `${screenCenter - elemWidth / 2}px`;
+      elem.style.marginRight += `${screenCenter - elemWidth / 2}px`;
     }
   });
 }
@@ -224,19 +227,19 @@ function centerElement(elements) {
 //   let calculatedMargin = (referenceMargin / referenceHeight) * currentHeight;
 
 //   console.log(`Setting margin-top: ${calculatedMargin}px for edu`);
-  
+
 //   edu.style.marginTop = `${calculatedMargin}px`;
 //}
 
 mailButton.addEventListener('click', () => {
-  if(document.getElementById("mail-modal")) return;
+  if (document.getElementById("mail-modal")) return;
   let mailModalBackground = document.createElement('div');
   mailModalBackground.id = "mail-modal-background";
   mailModalBackground.addEventListener("click", () => {
     closeMailModal();
   });
 
-  let mailModal = document.createElement('div'); 
+  let mailModal = document.createElement('div');
   mailModal.id = "mail-modal";
   mailModal.innerHTML = `
     <div id="your-email">
@@ -246,7 +249,7 @@ mailButton.addEventListener('click', () => {
   mailModal.style.transform = "translate(-50%, 250%)";
   document.body.appendChild(mailModalBackground);
   document.body.appendChild(mailModal);
-  
+
   setTimeout(() => {
     mailModal.style.transform = "translate(-50%, 50%)";
     mailModalBackground.style.opacity = "0.8";
@@ -255,12 +258,10 @@ mailButton.addEventListener('click', () => {
 
 document.addEventListener("keydown", (e) => {
   let mailModal = document.getElementById("mail-modal");
-  if(e.key === "Enter" && mailModal)
-  {
+  if (e.key === "Enter" && mailModal && !document.getElementById("alert-modal")) {
     let email = document.getElementById("email-input").value;
-    if(emailRules(email))
-    {
-      if(mailModal.children.length > 1) return;
+    if (emailRules(email) || document.getElementById("send-email-btn")) {
+      if (mailModal.children.length > 1) return;
       let typedEmail = email;
       mailModal.innerHTML += `
         <div id="subject">
@@ -275,87 +276,77 @@ document.addEventListener("keydown", (e) => {
         </div>
         `;
 
-        const sendButton = document.getElementById("send-email-btn");
-        const altSendInfo = document.getElementById("alt-send-email");
+      const sendButton = document.getElementById("send-email-btn");
+      const altSendInfo = document.getElementById("alt-send-email");
 
-        sendButton.addEventListener("mouseenter", () => {
-          altSendInfo.style.opacity = "0.4";
-        });
-        sendButton.addEventListener("mouseleave", () => {
-          altSendInfo.style.opacity = "1";
-        });
+      sendButton.addEventListener("mouseenter", () => {
+        altSendInfo.style.opacity = "0.4";
+      });
+      sendButton.addEventListener("mouseleave", () => {
+        altSendInfo.style.opacity = "1";
+      });
 
-        for(let i=1; i<mailModal.children.length; i++)
-        {
-          mailModal.children[i].style.opacity = "0"; 
+      for (let i = 1; i < mailModal.children.length; i++) {
+        mailModal.children[i].style.opacity = "0";
+      }
+      document.getElementById("email-input").value = typedEmail;
+      setTimeout(() => {
+        for (let i = 1; i < mailModal.children.length; i++) {
+          mailModal.children[i].style.opacity = "1";
         }
-        document.getElementById("email-input").value = typedEmail;
-        setTimeout(() => {
-          for(let i=1; i<mailModal.children.length; i++)
-          {
-            mailModal.children[i].style.opacity = "1"; 
-          }
-        }, 10);
+      }, 10);
 
-        document.getElementById("send-email-btn").addEventListener("click", () => {
-          let message = document.getElementById("message-input").value;
-          let possibleMailChange = document.getElementById("email-input").value;
-          if(message.length == 0)
-          {
-            alert("Message can't be empty!");
-            return;
-          }
-          if(!emailRules(possibleMailChange))
-          {
-            alert("It seems you've changed the previously provided email with an invaild one. Please try again.\n\nAn email address looks like: something@example.com"); 
-            return; 
-          }
-          //?if no errors, send email
-          sendEmail(); 
-          closeMailModal();
-        });
+      document.getElementById("send-email-btn").addEventListener("click", () => {
+        let message = document.getElementById("message-input").value;
+        let possibleMailChange = document.getElementById("email-input").value;
+        if (message.length == 0) {
+          CrawlingTools.alertModal("Message can't be empty!");
+          return;
+        }
+        if (!emailRules(possibleMailChange)) {
+          CrawlingTools.alertModal("It seems you've changed the previously provided email with an invaild one. Please try again.<br><br>An email address looks like: <u>something@example.com</u>");
+          return;
+        }
+        //?if no errors, send email
+        sendEmail();
+        closeMailModal();
+      });
 
-        document.addEventListener("keydown", (ev) => {
-          if(ev.key === "Enter" && ev.altKey && mailModal)
-          {
-            document.getElementById("send-email-btn").click();
-          }});
+      document.addEventListener("keydown", (ev) => {
+        if (ev.key === "Enter" && ev.altKey && mailModal) {
+          document.getElementById("send-email-btn").click();
+        }
+      });
     }
-    else
-    {
-      alert("What you've provided doesn't look like an email address. Please try again.\n\n an email address looks like: something@example.com");
+    else {
+      CrawlingTools.alertModal("What you've provided doesn't look like an email address. Please try again.<br><br> an email address looks like: <u>something@example.com</u>");
     }
   }
 });
 
-function emailRules(mail)
-{
+function emailRules(mail) {
   /* 
     * Before the "@" there can be anything (at least one character)
     * Email must contain "@" and "."
     * @ must be followed by a domain name (so there must be at least one character between @ and .)
-    * after "." there must be a domain name (so there must be at least one character after .)
+    * Domain must have at least one dot and some text after the last dot
   */
   const atIndex = mail.indexOf("@");
   if (atIndex < 1) return false;
 
-  //const local = mail.slice(0, atIndex);
   const domain = mail.slice(atIndex + 1);
 
   if (!domain || domain.startsWith(".") || domain.endsWith(".")) return false;
-  if ((domain.match(/\./g) || []).length !== 1) return false;
+  if ((domain.match(/\./g) || []).length < 1) return false;
 
-  const dotIndex = domain.indexOf(".");
-  if (dotIndex < 1 || dotIndex === domain.length - 1) return false;
-
-  return true;
+  const parts = domain.split(".");
+  return parts.every(part => part.length > 0);
 }
 
-function closeMailModal()
-{
+function closeMailModal() {
   let mailModal = document.getElementById("mail-modal");
   let mailModalBackground = document.getElementById("mail-modal-background");
-  if(!mailModal || !mailModalBackground) return;
+  if (!mailModal || !mailModalBackground) return;
   mailModal.style.transform = "translate(-50%, 200%)";
   mailModalBackground.style.opacity = "0";
   setTimeout(() => {
@@ -366,53 +357,54 @@ function closeMailModal()
 
 async function sendEmail() {
   if (!document.getElementById("mail-modal") || !document.getElementById("message-input") || !document.getElementById("subject-input")) return;
-    
-    const email = document.getElementById("email-input").value;
-    const subject = document.getElementById("subject-input").value;
-    const content = document.getElementById("message-input").value;
 
-    // Create a form dynamically
-    let form = document.createElement("form");
-    form.action = "https://formsubmit.co/f31de7e3ccc876e7fc65dcb9c1b52625";
-    form.method = "POST";
-    form.style.display = "none";
+  const email = document.getElementById("email-input").value;
+  const subject = document.getElementById("subject-input").value;
+  const content = document.getElementById("message-input").value;
 
-    //! Add required hidden field to prevent spam protection issues
-    let hiddenField = document.createElement("input");
-    hiddenField.type = "hidden";
-    hiddenField.name = "_captcha";
-    hiddenField.value = "false";
-    form.appendChild(hiddenField);
+  // Create a form dynamically
+  let form = document.createElement("form");
+  form.action = "https://formsubmit.co/f31de7e3ccc876e7fc65dcb9c1b52625";
+  form.method = "POST";
+  form.style.display = "none";
 
-    let emailField = document.createElement("input");
-    emailField.type = "hidden";
-    emailField.name = "email";
-    emailField.value = email;
-    form.appendChild(emailField);
+  //! Add required hidden field to prevent spam protection issues
+  let hiddenField = document.createElement("input");
+  hiddenField.type = "hidden";
+  hiddenField.name = "_captcha";
+  hiddenField.value = "false";
+  form.appendChild(hiddenField);
 
-    let subjectField = document.createElement("input");
-    subjectField.type = "hidden";
-    subjectField.name = "subject";
-    subjectField.value = subject;
-    form.appendChild(subjectField);
+  let emailField = document.createElement("input");
+  emailField.type = "hidden";
+  emailField.name = "email";
+  emailField.value = email;
+  form.appendChild(emailField);
 
-    let messageField = document.createElement("input");
-    messageField.type = "hidden";
-    messageField.name = "message";
-    messageField.value = content;
-    form.appendChild(messageField);
+  let subjectField = document.createElement("input");
+  subjectField.type = "hidden";
+  subjectField.name = "subject";
+  subjectField.value = subject;
+  form.appendChild(subjectField);
 
-    document.body.appendChild(form);
-    form.submit();
+  let messageField = document.createElement("input");
+  messageField.type = "hidden";
+  messageField.name = "message";
+  messageField.value = content;
+  form.appendChild(messageField);
 
-    alert("Thank you for reaching out, I'll get back to you as soon as possible.\nPlease wait a few seconds for the form submission to complete.\nYou can close this alert now, but DO NOT leave the page until the form is submitted.");
-    showFormLoading()
+  document.body.appendChild(form);
+  form.submit();
+
+  CrawlingTools.alertModal("Thank you for reaching out, I'll get back to you <b>as soon as possible.</b><br><u>Please wait a few seconds for the form submission to complete.</u><br>You can close this alert now, but <b>DO NOT LEAVE</b> the page until the form is submitted.");
+  showFormLoading()
 }
 
-function showFormLoading()
-{
-  const loadingDiv = document.createElement("div"); 
+function showFormLoading() {
+  const loadingDiv = document.createElement("div");
   loadingDiv.id = "loading-div";
   loadingDiv.innerHTML = `<div class="loader-container"><div class="loader"></div><span class="loader-text">Sending Email</span></div>`;
-  document.body.appendChild(loadingDiv); 
+  document.body.appendChild(loadingDiv);
 }
+
+window.openEdu = openEdu;

@@ -530,3 +530,57 @@ body {
     transform: rotate(360deg);
   }
 }
+.alert-modal {
+  padding: 20px;
+  color: #FFF;
+  text-align: center;
+  font-size: 16px;
+  font-family: "Courier New", Courier, monospace;
+  width: 100vw;
+  height: fit-content;
+  position: fixed;
+  padding-bottom: 1rem;
+  max-width: 600px;
+  background-color: #000;
+  outline: white 1px solid;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: all ease-out 0.75s;
+  z-index: 10000;
+}
+.alert-modal > .alert-modal-content > p {
+  white-space: pre-wrap;
+  text-align: center;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  max-height: 300px;
+}
+.alert-modal > .alert-modal-content > p * {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.alert-modal > .alert-modal-content > button {
+  color: rgba(255, 255, 255, 0.4);
+  background-color: transparent;
+  border: rgba(255, 255, 255, 0.4) 1px solid;
+  font-size: 24px;
+  font-weight: 900;
+  transition: all ease-in-out 0.3s;
+  margin-top: 1rem;
+}
+.alert-modal > .alert-modal-content > button:hover {
+  color: #FFFFFF;
+  border: #FFF 1px solid;
+}
+
+.alert-modal-background {
+  position: fixed;
+  background-color: #000;
+  opacity: 0.6;
+  transition: all ease-in 0.8s;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+}
