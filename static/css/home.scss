@@ -1,70 +1,120 @@
-body 
-{
-    background-color: #000;
-    color: #FFF;
+@use 'global';
+
+body {
+    background-color: #000000; 
+    color: #FFFFFF;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 300;
     font-size: 24px; 
-    padding-top: 7.5%;
-    padding-left: 10%;
+
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    
+    padding-top: 10vh;
+    padding-left: 15vw;
+    box-sizing: border-box;
+}
+
+#app {
+    height: calc(100vh - 10vh - 60px); 
+    overflow-y: auto; 
     overflow-x: hidden;
+    padding-right: 20px;
+    
+    &::-webkit-scrollbar { 
+        width: 6px; 
+    }
+    &::-webkit-scrollbar-track { 
+        background: transparent; 
+    }
+    &::-webkit-scrollbar-thumb { 
+        background: #333333; 
+        border-radius: 3px; 
+        
+        &:hover {
+            background: #888888;
+        }
+    }
 }
-
-.cmd-font {
-    font-family: 'Courier New', Courier, monospace;
-    font-weight: 500;
-    text-shadow: 0.5px 0.5px 0.5px rgba(255, 255, 255, 0.5);
-}
-
-.cmd-container 
-{
+.cmd-container {
     position: relative;
+    max-width: 1000px;
+    line-height: 1.8;  
 }
 
-.cmd-input
-{
+.cmd-title {
+    color: #888888; 
+    margin-bottom: 2.5rem;
+}
+
+.cmd-path {
+    display: flex;
+    align-items: center;
+    white-space: pre-wrap;
+    margin-bottom: 1.5rem;
+}
+
+.cmd-input {
     background-color: transparent;
     border: none;
-    color: #FFF;
-    font-size: 24px;
-    position: absolute;
-    width: 100%; 
-    white-space: nowrap;
-
-    &:focus
-    {
+    color: #FFFFFF;
+    font-size: inherit;
+    font-family: inherit;
+    margin-left: 8px;
+    
+    &:focus {
         outline: none;
     }
 }
 
-.cmd-span
-{
-    position: relative;
-    align-items: center;
-    align-content: center;
-    text-align: center;
-}
-
-.cmd-btns
-{
-    color: #FFF;
-    left: 5%;
-    font-size: 26px;
-    padding-bottom: 0.6%;
+/* =========================================
+   THE SLIDER BUTTONS
+   ========================================= */
+.lux-dir-link {
+    color: #FFFFFF;
     text-decoration: none;
-    transition: all 0.3s linear;
+    position: relative;
+    padding: 4px 12px;
+    margin-left: 10px;
+    z-index: 1;
+    display: inline-block;
+    
+    background: transparent;
+    border: none;
+    transition: color 0.1s ease; 
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0%;
+        height: 100%;
+        background-color: var(--dedsec-blue);
+        z-index: -1;
+        transition: width 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    // &::after {
+    //     content: '';
+    //     position: absolute;
+    //     top: 0;
+    //     left: 0;
+    //     width: 0%;
+    //     height: 100%;
+    //     border: 1px solid #888888; 
+    //     box-sizing: border-box;
+    //     z-index: 2;
+    //     transition: width 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+    // }
 
     &:hover {
-        transform: scale(1.08);
-        padding-left: 2%;
+        &::before {
+            width: 100%;
+        }
+        // &::after {
+        //     width: 100%;
+        // }
     }
-}
-
-.btn-underline
-{
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    height: 3px;
-    width: 0%; 
-    background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
-    transition: all 0.5s ease-in;
 }

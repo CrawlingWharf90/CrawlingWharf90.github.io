@@ -1,0 +1,119 @@
+/* =========================================
+   GLOBAL.SCSS - Shared Systems & Aesthetics
+   ========================================= */
+
+/* --- 0. Global Master Variables --- */
+:root {
+  --bg-color: #050505;       /* DedSec Dark */
+  --text-primary: #FFFFFF;
+  --text-dim: #888888;       /* DedSec Gray */
+  --dedsec-blue: #1b33f6;    /* DedSec Signature Neon Blue */
+  
+  --glass-bg: rgba(5, 5, 5, 0.85);
+  --glass-border: rgba(255, 255, 255, 0.4);
+}
+
+/* --- 1. Global CRT Scanline Effect --- */
+.scanlines {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(
+    to bottom,
+    rgba(255,255,255,0),
+    rgba(255,255,255,0) 50%,
+    rgba(0,0,0,0.1) 50%,
+    rgba(0,0,0,0.1)
+  );
+  background-size: 100% 4px;
+  pointer-events: none; 
+  z-index: 9999;
+}
+
+/* --- 2. Global Universal Buttons --- */
+#go-back-btn {
+  position: fixed;
+  z-index: 9998;
+  bottom: 3%;
+  left: 3%;
+}
+
+.lux-btn {
+  display: inline-block;
+  background: transparent;
+  border: 2px solid var(--text-primary);
+  color: var(--text-primary);
+  padding: 8px 24px;
+  cursor: pointer;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  
+  transition: all 0.1s linear; 
+
+  &:hover {
+    background: var(--dedsec-blue);
+    border-color: var(--dedsec-blue);
+    color: #FFFFFF;
+    box-shadow: 0 0 15px rgba(27, 51, 246, 0.6); /* Neon blue glow */
+    text-shadow: 1px 1px 0px #000; /* Keeps text legible against the neon */
+  }
+}
+
+/* --- 3. Global Cursors --- */
+#go-back-btn button, .return-action {
+  cursor: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 14 4 9 9 4"></polyline><path d="M20 20v-7a4 4 0 0 0-4-4H4"></path></svg>') 12 12, pointer;
+
+  &:hover {
+    cursor: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23000000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 14 4 9 9 4"></polyline><path d="M20 20v-7a4 4 0 0 0-4-4H4"></path></svg>') 12 12, pointer;
+  }
+}
+
+button[onclick^="followLink"], a.external-link {
+  cursor: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>') 12 12, pointer;
+
+  &:hover {
+    cursor: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23000000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>') 12 12, pointer;
+  }
+}
+
+/* --- 4. Global Page Transitions --- */
+
+.lux-glitch-out {
+  pointer-events: none; 
+  animation: fatalErrorOut 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  // RGB split simulation
+  filter: drop-shadow(4px 0 0 rgba(255, 0, 50, 0.6)) drop-shadow(-4px 0 0 rgba(0, 229, 255, 0.6));
+}
+
+// The Entrance Glitch (Optional: add this class to the body of your next page)
+.lux-glitch-in {
+  animation: fatalErrorIn 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes fatalErrorOut {
+  0%   { clip-path: inset(0 0 0 0); transform: translate(0); }
+  10%  { clip-path: inset(10% 0 20% 0); transform: translate(-5px, 2px); filter: invert(0.2); }
+  20%  { clip-path: inset(40% 0 10% 0); transform: translate(5px, -2px); filter: invert(0); }
+  30%  { clip-path: inset(0 0 0 0); transform: translate(0); filter: drop-shadow(10px 0 0 red) drop-shadow(-10px 0 0 cyan); }
+  40%  { clip-path: inset(80% 0 5% 0); transform: translate(-10px, 0); }
+  50%  { clip-path: inset(0 0 0 0); transform: translate(0); filter: invert(1) contrast(200%); }
+  60%  { clip-path: inset(20% 0 50% 0); transform: translate(10px, 5px); }
+  70%  { clip-path: inset(0 0 0 0); transform: translate(0); filter: invert(0); }
+  80%  { clip-path: inset(5% 0 80% 0); transform: translate(-5px, -5px) scale(1.02); }
+  90%  { clip-path: inset(0 0 0 0); transform: translate(0) scale(1); filter: brightness(300%) grayscale(100%); opacity: 0.8;}
+  100% { transform: scale(1.05); filter: brightness(0); opacity: 0; }
+}
+
+@keyframes fatalErrorIn {
+  0%   { filter: brightness(0); opacity: 0; transform: scale(1.05); }
+  20%  { clip-path: inset(20% 0 50% 0); transform: translate(10px, 5px); filter: invert(1) contrast(200%); opacity: 1;}
+  40%  { clip-path: inset(80% 0 5% 0); transform: translate(-10px, 0); filter: drop-shadow(10px 0 0 red) drop-shadow(-10px 0 0 cyan); }
+  60%  { clip-path: inset(10% 0 20% 0); transform: translate(-5px, 2px); filter: invert(0.2); }
+  80%  { clip-path: inset(0 0 0 0); transform: translate(0); filter: drop-shadow(4px 0 0 rgba(255, 0, 50, 0.6)) drop-shadow(-4px 0 0 rgba(0, 229, 255, 0.6)); }
+  100% { clip-path: inset(0 0 0 0); transform: translate(0); filter: none; }
+}
+

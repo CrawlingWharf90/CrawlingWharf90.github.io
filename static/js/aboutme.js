@@ -1,235 +1,91 @@
 import { CrawlingTools } from "./tools.js";
+import TypeWords from 'https://cdn.jsdelivr.net/npm/crawling-typer@1.1.1/typer.js';
 
-var lastScroll = 0;
-var lastScrollY = 0;
-var blurAmount;
-var windowHeight;
-var virtualScrollY = 0;
-const TAAG = document.getElementById("TAAG");
-const edu = document.getElementsByClassName("education")[0];
-const freeTimeTitle = document.getElementById("free-time-title");
-const secondSection = document.getElementById("second-section");
-const sectionTitle = document.getElementById("section-title");
-const freeTimeDiv = document.getElementById("free-time-div");
-const imgContainer = document.getElementById("lyrics-curator-img");
-const textContainer = document.getElementById("lyrics-curator-div");
-const mailButton = document.getElementById("mail-btn");
-const path = "..\\AboutMe\\";
-const freeTimeText = "WHAT ABOUT MY FREE TIME?";
-var scrollStep = 7;
-const saveTAAGPosition = TAAG.getBoundingClientRect();
-const saveEduPosition = edu.getBoundingClientRect();
-const baseMargin = 50;
-const heightFactor = 0.5;
-var locked = false;
-var scrollCounter = 0;
-var lastDirection = "";
-var ticking = false;
-var freeTimeEffect = false;
-var effectStarted = false;
+let activeTyper = null; 
+const returnBtn = document.getElementById("return-btn");
 
-const elementsToCenter = [edu, TAAG, secondSection]
+const yearSpan = document.querySelector(".dynamic-year");
 
 document.addEventListener("DOMContentLoaded", function () {
-  lastScroll = window.scrollY;
-  window.scroll(0, 0);
-  //setResponsiveMargin(); 
-  let additionalMargin = window.innerHeight * heightFactor;
-  edu.style.marginTop = `${TAAG.getBoundingClientRect().height + baseMargin - additionalMargin}px`;
-  freeTimeTitle.textContent = freeTimeText;
-  windowHeight = window.innerHeight;
-  blurAmount = 0; //! this could pontentially be a local variable since at the begginning it's always 0, but we'll keep it here just in case
-  centerElement(elementsToCenter);
-  let startlink = document.getElementsByClassName("tablinks")[0];
-  startlink.click();
-});
+  let startlink = document.querySelector(".terminal-tabs .lux-tab");
+  if(startlink) startlink.click();
 
-imgContainer.addEventListener("mouseenter", () => {
-  textContainer.style.left = -25 + "%"; // Moves text to the left
-});
+  const returnBtn = document.getElementById("return-btn");
+  if (returnBtn) {
+    returnBtn.addEventListener("click", (e) => {
+        e.preventDefault(); 
+        
+        //! Remove the entry glitch so they don't conflict
+        document.body.classList.remove("lux-glitch-in");
+        
+        //? Trigger the system failure effect
+        document.body.classList.add("lux-glitch-out");
+        
+        setTimeout(() => {
+            window.location.href = './home.html';
+        }, 700);
+    });
+  }
 
-imgContainer.addEventListener("mouseleave", () => {
-  textContainer.style.left = 0 + "%"; // Moves text back to the right
+  setTimeout(() => {
+      document.body.classList.remove("lux-glitch-in");
+  }, 550);
+
+  if (CrawlingTools) CrawlingTools.openImage(".lux-img", true);
+
+  if (yearSpan) yearSpan.textContent = new Date().getFullYear();
 });
 
 function openEdu(evt, schoolName) {
-  let i, tabcontent, tablinks;
-  evt.preventDefault();
-  tabcontent = document.getElementsByClassName("tabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
-  }
-  tablinks = document.getElementsByClassName("tablinks");
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" active", "");
-  }
-  document.getElementById(schoolName).style.display = "block";
-  evt.currentTarget.className += " active";
-}
-
-// window.addEventListener('wheel', (e) => 
-// { 
-//   if (e.deltaMode === 1) {
-//     //? Line mode: Likely a mouse wheel
-//     scrollStep = 1; 
-//   } else if (e.deltaMode === 0) {
-//     //? Pixel mode: Likely a trackpad
-//     scrollStep = 7; 
-//   }
-
-//   let lastScroll = virtualScrollY;
-//   if(freeTimeEffect)
-//   {
-//     virtualScrollY += e.deltaY;
-
-//     const currentScroll = virtualScrollY; 
-
-//     if (currentScroll > lastScroll) {
-//       if (lastDirection == "up") scrollCounter = 0;
-//       lastDirection = "down";
-//       scrollCounter++;
-//       if (scrollCounter >= scrollStep) {
-//         if (sectionTitle.textContent == "") sectionTitle.textContent = path;
-//         const removedLetters = freeTimeText.slice(-(sectionTitle.textContent.length - path.length + 1));
-//         freeTimeTitle.textContent = freeTimeTitle.textContent.slice(0, -1);
-//         sectionTitle.textContent = path + removedLetters;
-//         scrollCounter = 0;
-//       }
-//     }
-
-//     if (currentScroll < lastScroll) {
-//       if (lastDirection == "down") scrollCounter = 0;
-//       lastDirection = "up";
-//       scrollCounter++;
-//       if ((scrollCounter >= scrollStep) && (freeTimeDiv.getBoundingClientRect().top > windowHeight + 10)) {
-//         const addedLetters = freeTimeText.slice(freeTimeTitle.textContent.length, freeTimeTitle.textContent.length + 1);
-//         sectionTitle.textContent = sectionTitle.textContent.slice(0, path.length) + sectionTitle.textContent.slice(path.length + 1);
-//         freeTimeTitle.textContent += addedLetters;
-//         if (sectionTitle.textContent.length == path.length) sectionTitle.textContent = "";
-//         scrollCounter = 0;
-//       }
-//     }
-//   }
-
-//   if (freeTimeTitle.textContent != freeTimeText) {
-//     edu.style.position = "fixed"; 
-//     edu.style.top = -1000 + "px";
-//     TAAG.style.top = -1000 + "px";
-//     effectStarted = true;
-//   } else { 
-//     edu.style.position = "relative";
-//     edu.style.top = 'auto'; 
-//     TAAG.style.top = saveTAAGPosition.top + "px";
-//   }
-
-//   //!THIS WAS TO FIX TO A BUG THAT MIGHT HAPPEN IF THE USER SWITCHES BETWEEN MOUSE AND TRACKPAD WHILE SCROLLING, HOWEVER THE BUG IS VERY MINOR AND THE END RESULT IS MUCH WORSE IF THE SCRIPT HANDLES IT
-//   // if(effectStarted && edu.style.position == "relative" && window.scrollY < window.innerHeight)
-//   //   {
-//   //     if(freeTimeTitle.classList.contains("free-time-fixed")) freeTimeTitle.classList = "free-time-static";
-//   //   }
-// }); 
-
-//! window.addEventListener('wheel', (e) => {
-//!   if (document.getElementById("mail-modal"))
-//!   {
-//!     e.preventDefault();
-//!   }
-//! }, { passive: false }); 
-
-window.addEventListener('scroll', () => {
-  lastScrollY = window.scrollY;
-
-  if (!ticking) {
-    window.requestAnimationFrame(() => {
-      handleScroll(lastScrollY);
-      ticking = false;
-    });
-
-    ticking = true;
-  }
-});
-
-function handleScroll(scrollY) {
-  if (scrollY < 1500) {
-    const blurAmount = scrollY / 25;
-    TAAG.style.filter = `blur(${blurAmount}px)`;
-  }
-
-  // if (freeTimeTitle.textContent != "") {
-  //   freeTimeDiv.style.position = "absolute";
-  //   freeTimeDiv.style.opacity= "0"; 
-  //   freeTimeDiv.style.top = `${scrollY + 1000}px`;
-  // }
-  // else
-  // {
-  //   freeTimeDiv.style.opacity= "1";
-  // }
-
-  // const freeTimeMidPoint = freeTimeTitle.getBoundingClientRect().top + (freeTimeTitle.getBoundingClientRect().height / 2);
-
-  // if (freeTimeTitle.classList.contains("free-time-static") && locked && freeTimeMidPoint > (windowHeight / 2 + 1)) locked = false;
-
-  // if (freeTimeTitle.classList.contains("free-time-fixed") && (freeTimeTitle.getBoundingClientRect().top - edu.getBoundingClientRect().bottom <= 2.5)) {
-  //   freeTimeEffect = false; 
-  //   freeTimeTitle.classList = "free-time-static";
-  // }
-
-  // if (freeTimeMidPoint <= windowHeight / 2 && !locked) {
-  //   freeTimeTitle.classList = "free-time-fixed";
-  //   freeTimeTitle.style.top = `${windowHeight / 2 - (freeTimeTitle.getBoundingClientRect().height / 2)}px`;
-  //   freeTimeTitle.style.left = `${secondSection.getBoundingClientRect().left + 25}px`;
-  //   locked = true;
-  // }
-
-  // if (edu.getBoundingClientRect().bottom < -15) {
-  //   if(!freeTimeEffect) freeTimeEffect = true;
-  // }
-  // lastScroll = scrollY;
-}
-
-window.onresize = (e) => { //!TODO: education tab postion has to be changed on window resizing
-  console.log("Window Resized");
-  let screenCenter = window.innerWidth / 2;
-  let windowHeight = window.innerHeight;
-  let additionalMargin = window.innerHeight * heightFactor;
-  edu.style.marginTop = `${TAAG.getBoundingClientRect().height + baseMargin - additionalMargin}px`;
-  centerElement(elementsToCenter);
-  console.log(screenCenter);
-  if (freeTimeTitle.classList.contains("free-time-fixed")) freeTimeTitle.style.top = `${windowHeight / 2 - (freeTimeTitle.getBoundingClientRect().height / 2)}px`; //? Change text position so that it's always centered based on window height
-}
-
-function centerElement(elements) {
-  const screenCenter = window.innerWidth / 2;
-  //console.log(edu.style.width);
-  //setResponsiveMargin();
-  elements.forEach(elem => {
-    console.log(elem);
-
-    const elemWidth = elem.offsetWidth;
-
-    if (getComputedStyle(elem).position === "absolute" || getComputedStyle(elem).position === "fixed") {
-      elem.style.left = "50%";
-      elem.style.transform = "translateX(-50%)";
-    } else {
-      elem.style.marginLeft += `${screenCenter - elemWidth / 2}px`;
-      elem.style.marginRight += `${screenCenter - elemWidth / 2}px`;
+    //? 1. Tab Switching Logic
+    let tabcontents = document.getElementsByClassName("tabcontent");
+    for (let i = 0; i < tabcontents.length; i++) {
+        tabcontents[i].style.display = "none";
+        tabcontents[i].classList.remove("active-tab");
     }
-  });
+
+    let tablinks = document.getElementsByClassName("lux-tab");
+    for (let i = 0; i < tablinks.length; i++) {
+        tablinks[i].classList.remove("active");
+    }
+
+    let targetTab = document.getElementById(schoolName);
+    targetTab.style.display = "block";
+    targetTab.classList.add("active-tab");
+    evt.currentTarget.classList.add("active");
+
+    //? 2. Prepare the paragraph for the typing effect
+    let paragraph = targetTab.querySelector('p');
+    let originalText = paragraph.getAttribute('data-text');
+
+    if (!originalText) {
+        originalText = paragraph.innerText;
+        paragraph.setAttribute('data-text', originalText);
+    }
+    paragraph.innerHTML = '';
+
+    //? 3. Crawling-Typer Implementation
+    if (activeTyper) activeTyper.pause(); 
+
+    activeTyper = TypeWords(
+        [{ text: originalText, color: "#FFFFFF" }],
+        paragraph,                                  
+        10,                                         
+        10,                                         
+        10,                                          
+        1,                                         
+        "play",                                     
+        { name: "forwards", index: 0 }              
+    );
+
+    activeTyper.cursor(true, 500, "_"); 
 }
 
-// function setResponsiveMargin() {
-//   if (!edu) return;
+window.openEdu = openEdu;
 
-//   const referenceHeight = 1026; // This is the height of the 17" display where 25% worked best.
-//   const referenceMargin = referenceHeight * 0.25; // 25% of 1026
-//   let currentHeight = window.innerHeight;
+//* --- MAIL MODAL LOGIC ---
 
-//   let calculatedMargin = (referenceMargin / referenceHeight) * currentHeight;
-
-//   console.log(`Setting margin-top: ${calculatedMargin}px for edu`);
-
-//   edu.style.marginTop = `${calculatedMargin}px`;
-//}
+const mailButton = document.getElementById("mail-btn");
 
 mailButton.addEventListener('click', () => {
   if (document.getElementById("mail-modal")) return;
@@ -242,103 +98,113 @@ mailButton.addEventListener('click', () => {
   let mailModal = document.createElement('div');
   mailModal.id = "mail-modal";
   mailModal.innerHTML = `
-    <div id="your-email">
-      <span><h5>Your Email Address:</h5><input type="email" id="email-input" placeholder="Enter your email address here..."></span>
+    <div id="close-mail-modal" style="position: absolute; top: 25px; right: 25px; cursor: pointer; color: var(--text-dim); transition: all 0.3s ease;">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+        <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+      </svg>
+    </div>
+    <div id="your-email" style="margin-top: 15px;">
+      <span><h5>USER_EMAIL</h5><input type="email" id="email-input" placeholder="Enter your email address..."></span>
     </div>
   `;
-  mailModal.style.transform = "translate(-50%, 250%)";
+  
+  mailModal.style.top = "50%";
+  mailModal.style.transform = "translate(-50%, 100vh)"; 
+  
   document.body.appendChild(mailModalBackground);
   document.body.appendChild(mailModal);
 
+  document.getElementById("close-mail-modal").addEventListener("click", closeMailModal);
+
   setTimeout(() => {
-    mailModal.style.transform = "translate(-50%, 50%)";
-    mailModalBackground.style.opacity = "0.8";
+    mailModal.style.transform = "translate(-50%, -50%)";
+    mailModalBackground.style.opacity = "0.9"; 
   }, 100);
 });
 
 document.addEventListener("keydown", (e) => {
   let mailModal = document.getElementById("mail-modal");
-  if (e.key === "Enter" && mailModal && !document.getElementById("alert-modal")) {
+  let alertModal = document.getElementById("alert-modal");
+  
+  if (e.key === "Escape" && mailModal && !alertModal) {
+      closeMailModal();
+      return;
+  }
+
+  if (alertModal && !alertModal.style.top) return;
+
+  if (e.key === "Enter" && mailModal) {
     let email = document.getElementById("email-input").value;
-    if (emailRules(email) || document.getElementById("send-email-btn")) {
-      if (mailModal.children.length > 1) return;
-      let typedEmail = email;
-      mailModal.innerHTML += `
-        <div id="subject">
-          <span><h5>Subject:</h5><input type="text" id="subject-input" placeholder="Email subject here..."></span>
-        </div>
-        <div id="message">
-          <span><h4>Message:</h4></span><textarea id="message-input" placeholder="Type your email here..."></textarea>
-        </div>
-        <div id="send-email">
-          <button id="send-email-btn">Send</button>
-          <div id="alt-send-email">or press <b>Alt + Enter</b></div>
-        </div>
-        `;
+    let isExpanded = mailModal.querySelector("#expanded-content");
+    
+    if (emailRules(email)) {
+      if (isExpanded) return; 
+      
+      mailModal.classList.add("expanded");
+      document.getElementById("email-input").style.color = "var(--text-dim)";
 
-      const sendButton = document.getElementById("send-email-btn");
-      const altSendInfo = document.getElementById("alt-send-email");
+      mailModal.insertAdjacentHTML('beforeend', `
+        <div id="expanded-content" style="opacity: 0; transition: opacity 0.6s ease 0.4s;">
+          <div id="subject" class="mt-4">
+            <span><h5 id="subject-title"></h5><input type="text" id="subject-input" placeholder="Email subject..."></span>
+          </div>
+          <div id="message" class="mt-4">
+            <span><h4 id="message-title"></h4></span><textarea id="message-input" placeholder="Type message data..."></textarea>
+          </div>
+          <div id="send-email" class="mt-4">
+            <button class="lux-btn" id="send-email-btn">TRANSMIT</button>
+            <div id="alt-send-email" class="text-muted mt-2" style="font-size: 0.8rem;">or press <b>Alt + Enter</b></div>
+          </div>
+        </div>
+      `);
 
-      sendButton.addEventListener("mouseenter", () => {
-        altSendInfo.style.opacity = "0.4";
-      });
-      sendButton.addEventListener("mouseleave", () => {
-        altSendInfo.style.opacity = "1";
-      });
-
-      for (let i = 1; i < mailModal.children.length; i++) {
-        mailModal.children[i].style.opacity = "0";
-      }
-      document.getElementById("email-input").value = typedEmail;
       setTimeout(() => {
-        for (let i = 1; i < mailModal.children.length; i++) {
-          mailModal.children[i].style.opacity = "1";
-        }
-      }, 10);
+        document.getElementById("expanded-content").style.opacity = "1";
+        
+        const subjTyper = TypeWords([{ text: "SUBJECT", color: "#FFFFFF" }], document.getElementById("subject-title"), 25, 25, 0, 1, "play", { name: "forwards", index: 0 });
+        subjTyper.cursor(true, 500, "_");
+
+        const msgTyper = TypeWords([{ text: "MESSAGE", color: "#FFFFFF" }], document.getElementById("message-title"), 25, 25, 0, 1, "play", { name: "forwards", index: 0 });
+        msgTyper.cursor(true, 500, "_");
+      }, 50);
 
       document.getElementById("send-email-btn").addEventListener("click", () => {
         let message = document.getElementById("message-input").value;
-        let possibleMailChange = document.getElementById("email-input").value;
-        if (message.length == 0) {
-          CrawlingTools.alertModal("Message can't be empty!");
+        let finalEmailCheck = document.getElementById("email-input").value;
+        
+        if (message.length === 0) {
+          if (CrawlingTools) CrawlingTools.alertModal("Message is empty.<br><b>Email must contain a message.</b>");
           return;
         }
-        if (!emailRules(possibleMailChange)) {
-          CrawlingTools.alertModal("It seems you've changed the previously provided email with an invaild one. Please try again.<br><br>An email address looks like: <u>something@example.com</u>");
+        if (!emailRules(finalEmailCheck)) {
+          if (CrawlingTools) CrawlingTools.alertModal("The email address was changed to an invalid format.<br><b>Please correct it.</b>");
           return;
         }
-        //?if no errors, send email
+        
         sendEmail();
         closeMailModal();
       });
 
       document.addEventListener("keydown", (ev) => {
-        if (ev.key === "Enter" && ev.altKey && mailModal) {
+        if (ev.key === "Enter" && ev.altKey && document.getElementById("send-email-btn")) {
           document.getElementById("send-email-btn").click();
         }
       });
-    }
-    else {
-      CrawlingTools.alertModal("What you've provided doesn't look like an email address. Please try again.<br><br> an email address looks like: <u>something@example.com</u>");
+      
+    } else {
+      if (!isExpanded) {
+        if (CrawlingTools) CrawlingTools.alertModal("Invalid address format.<br><b>Please enter a valid email.</b>");
+      }
     }
   }
 });
 
 function emailRules(mail) {
-  /* 
-    * Before the "@" there can be anything (at least one character)
-    * Email must contain "@" and "."
-    * @ must be followed by a domain name (so there must be at least one character between @ and .)
-    * Domain must have at least one dot and some text after the last dot
-  */
   const atIndex = mail.indexOf("@");
   if (atIndex < 1) return false;
-
   const domain = mail.slice(atIndex + 1);
-
   if (!domain || domain.startsWith(".") || domain.endsWith(".")) return false;
   if ((domain.match(/\./g) || []).length < 1) return false;
-
   const parts = domain.split(".");
   return parts.every(part => part.length > 0);
 }
@@ -347,8 +213,10 @@ function closeMailModal() {
   let mailModal = document.getElementById("mail-modal");
   let mailModalBackground = document.getElementById("mail-modal-background");
   if (!mailModal || !mailModalBackground) return;
-  mailModal.style.transform = "translate(-50%, 200%)";
+  
+  mailModal.style.transform = "translate(-50%, 100vh)";
   mailModalBackground.style.opacity = "0";
+  
   setTimeout(() => {
     mailModal.remove();
     mailModalBackground.remove();
@@ -357,18 +225,15 @@ function closeMailModal() {
 
 async function sendEmail() {
   if (!document.getElementById("mail-modal") || !document.getElementById("message-input") || !document.getElementById("subject-input")) return;
-
   const email = document.getElementById("email-input").value;
   const subject = document.getElementById("subject-input").value;
   const content = document.getElementById("message-input").value;
 
-  // Create a form dynamically
   let form = document.createElement("form");
   form.action = "https://formsubmit.co/f31de7e3ccc876e7fc65dcb9c1b52625";
   form.method = "POST";
   form.style.display = "none";
 
-  //! Add required hidden field to prevent spam protection issues
   let hiddenField = document.createElement("input");
   hiddenField.type = "hidden";
   hiddenField.name = "_captcha";
@@ -396,15 +261,5 @@ async function sendEmail() {
   document.body.appendChild(form);
   form.submit();
 
-  CrawlingTools.alertModal("Thank you for reaching out, I'll get back to you <b>as soon as possible.</b><br><u>Please wait a few seconds for the form submission to complete.</u><br>You can close this alert now, but <b>DO NOT LEAVE</b> the page until the form is submitted.");
-  showFormLoading()
+  if(CrawlingTools) CrawlingTools.alertModal("Sending data... Thanks for reaching out! I'll get back to you as soon as I can.");
 }
-
-function showFormLoading() {
-  const loadingDiv = document.createElement("div");
-  loadingDiv.id = "loading-div";
-  loadingDiv.innerHTML = `<div class="loader-container"><div class="loader"></div><span class="loader-text">Sending Email</span></div>`;
-  document.body.appendChild(loadingDiv);
-}
-
-window.openEdu = openEdu;
