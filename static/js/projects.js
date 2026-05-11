@@ -134,8 +134,12 @@ document.addEventListener("DOMContentLoaded", function() {
                                 projectDescriptionLink.style.opacity = 1;
                             }
                             
-                            backgroundImage.style.backgroundImage = `url(${sortedProjects[projectIndex].image})`;
-                            backgroundImage.style.opacity = 0.15; // Kept dim for hacker vibe
+                            if(sortedProjects[projectIndex].image === "") {
+                                backgroundImage.style.backgroundImage = `url(${defaultProjectImage})`;
+                            } else {    
+                                backgroundImage.style.backgroundImage = `url(${sortedProjects[projectIndex].image})`;
+                            }
+                            backgroundImage.style.opacity = 0.30;
                         }, 500);
                         
                         textEffect(sortedProjects[projectIndex].name.toUpperCase());

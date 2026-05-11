@@ -48,5 +48,55 @@
       "preview": "Listen to the episode on Spotify",
       "address": "https://open.spotify.com/episode/3ZISZe1TObawVmYUxwQZMe?si=b2feff0e01874334"
     }
+  },
+  {
+    "type": "Project",
+    "name": "Hardware Task Scheduler",
+    "description": "An RTL implementation of a highly optimized <strong>Hardware Task Scheduler</strong> (Priority Queue) written in <strong>VHDL</strong>. Designed to interface with an external Single-Port Synchronous RAM, the module efficiently manages up to 63 concurrent tasks with dynamic priority sorting and extraction.<br><br>To ensure zero-defect logic and mitigate edge-case race conditions (such as Delta Cycles), the project features a robust hybrid verification framework. A custom <strong>Python Golden Model</strong> generates thousands of randomized test vectors, which are dynamically validated by a VHDL Testbench using the <code>std.textio</code> library.",
+    "image": "https://res.cloudinary.com/dciliogd4/image/upload/v1778491424/Waveform_cddydb.webp",
+    "link": {
+      "preview": "View Repository",
+      "address": "https://github.com/CrawlingWharf90/RL-Prova-Finale-2026"
+    }
+  },
+  {
+    "type": "Project",
+    "name": "Galaxy Trucker",
+    "description": "A faithful digital adaptation of the popular board game Galaxy Trucker, developed in Java.<br>The project features a comprehensive implementation of the game's mechanics, including ship construction, resource management, and space exploration. Players can build their own spaceships, navigate through hazardous space routes, and compete against others in a dynamic and engaging environment. The game offers a 4 player multiplayer mode, allowing for a rich gaming experience that captures the essence of the original board game.",
+    "image": "https://res.cloudinary.com/dciliogd4/image/upload/v1778492134/galaxy-trucker-re-release-cover-art_aiaodv.webp",
+    "link": {
+      "preview": "View Repository",
+      "address": "https://github.com/XedaGmr/ing-sw-2025-moscovici-martinelli-ortore-lunghi"
+    }
+  },
+  {
+    "type": "Project",
+    "name": "Movhex",
+    "description": "A high-performance algorithmic engine for optimal route calculation across a dynamic <strong>hexagonal grid</strong>. Developed for a simulated logistics network, the system models geographic maps as complex graphs to evaluate the most cost-effective travel paths.<br><br>The project showcases advanced <strong>Graph Theory</strong> applications, supporting dynamic topology updates such as modifying transit weights and toggling custom air routes between non-adjacent nodes. It efficiently processes shortest-path queries using custom Data Structures and Algorithms.",
+    "image": "https://res.cloudinary.com/dciliogd4/image/upload/v1778492582/hex-map_ztmamx.webp",
+    "link": {
+      "preview": "View Repository",
+      "address": "https://github.com/CrawlingWharf90/API-Prova-Finale-2025"
+    }
+  },
+  {
+    "type": "Project",
+    "name": "Project Management and Reporting",
+    "description": "A full-stack web application designed for custom hardware configuration. The platform allows authenticated users to build, manage, and clone personalized PC setups by selecting specific components (CPU, GPU, RAM SKUs) while dynamically calculating the total price.<br><br>The project was developed using a dual-architecture approach to showcase progressive web enhancement: a traditional Server-Side Rendered (SSR) version using pure HTML/Java, and a modern <strong>Single Page Application (SPA)</strong>. The SPA leverages vanilla JavaScript and <strong>AJAX</strong> to perform asynchronous server requests, ensuring seamless and partial UI updates without full page reloads.",
+    "image": "",
+    "link": {
+      "preview": "",
+      "address": "https://github.com/CrawlingWharf90/TIW-Gestione_e_Rendicontazione_di_Progetti"
+    }
+  },
+  {
+    "type": "Project",
+    "name": "EmoProsopon",
+    "description": "State-of-the-art facial recognition system leveraging deep learning techniques to analyze and interpret human emotions.<br><br>The project utilizes convolutional neural networks (CNNs) trained on extensive datasets to accurately classify a wide range of emotional expressions, including happiness, sadness, anger, surprise, and more. With real-time processing capabilities, the system can be applied in various domains such as mental health monitoring, customer experience analysis, and human-computer interaction to provide valuable insights into emotional states.",
+    "image": "https://res.cloudinary.com/dciliogd4/image/upload/v1778494198/EmoProsopon_lncj3r.webp",
+    "link": {
+      "preview": "",
+      "address": ""
+    }
   }
 ]
