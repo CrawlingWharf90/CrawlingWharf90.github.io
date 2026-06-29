@@ -185,7 +185,7 @@ body {
   left: 0;
   background-size: cover;
   background-position: center;
-  filter: grayscale(100%) contrast(150%) brightness(0.2);
+  filter: grayscale(100%) contrast(150%) brightness(0.3);
   transition: background-image 0.3s ease-in-out;
 }
 

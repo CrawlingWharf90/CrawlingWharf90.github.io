@@ -83,7 +83,7 @@
     "type": "Project",
     "name": "Project Management and Reporting",
     "description": "A full-stack web application designed for custom hardware configuration. The platform allows authenticated users to build, manage, and clone personalized PC setups by selecting specific components (CPU, GPU, RAM SKUs) while dynamically calculating the total price.<br><br>The project was developed using a dual-architecture approach to showcase progressive web enhancement: a traditional Server-Side Rendered (SSR) version using pure HTML/Java, and a modern <strong>Single Page Application (SPA)</strong>. The SPA leverages vanilla JavaScript and <strong>AJAX</strong> to perform asynchronous server requests, ensuring seamless and partial UI updates without full page reloads.",
-    "image": "",
+    "image": "https://res.cloudinary.com/dciliogd4/image/upload/v1782727759/TIW_Website_Background_wppuc5.webp",
     "link": {
       "preview": "",
       "address": "https://github.com/CrawlingWharf90/TIW-Gestione_e_Rendicontazione_di_Progetti"
@@ -95,8 +95,18 @@
     "description": "State-of-the-art facial recognition system leveraging deep learning techniques to analyze and interpret human emotions.<br><br>The project utilizes convolutional neural networks (CNNs) trained on extensive datasets to accurately classify a wide range of emotional expressions, including happiness, sadness, anger, surprise, and more. With real-time processing capabilities, the system can be applied in various domains such as mental health monitoring, customer experience analysis, and human-computer interaction to provide valuable insights into emotional states.",
     "image": "https://res.cloudinary.com/dciliogd4/image/upload/v1778494198/EmoProsopon_lncj3r.webp",
     "link": {
-      "preview": "",
-      "address": ""
+      "preview": "Try It Out",
+      "address": "https://github.com/CrawlingWharf90/EmoProsopon/releases"
+    }
+  },
+  {
+    "type": "Project",
+    "name": "Margot Color Converter",
+    "description": "A lightweight, dark-themed Python utility built to reverse-engineer color blending for garment printing.<br>Margot Color Converter mathematically pre-shifts the pixels in your transparent .png designs to compensate for the specific hex code of the target garment, ensuring the final physical print matches your intended artwork.",
+    "image": "https://res.cloudinary.com/dciliogd4/image/upload/v1782728280/Margot_CC_Website_BG_w5kmbq.webp",
+    "link": {
+      "preview": "View Repo",
+      "address": "https://github.com/CrawlingWharf90/Margot_Color_Converter"
     }
   }
 ]
