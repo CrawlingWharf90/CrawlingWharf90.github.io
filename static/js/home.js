@@ -75,7 +75,7 @@ const CliDisplay = {
                 `<span class="data-dim">${today2}  ${time2}   &lt;DIR&gt;         ..</span>`,
                 `<span>${today}  ${time}   &lt;DIR&gt;         <a href="aboutme.html" class="lux-dir-link internal-link">About_Me</a></span>`,
                 `<span>${today}  ${time}   &lt;DIR&gt;         <a href="projects.html" class="lux-dir-link internal-link">Projects</a></span>`,
-                `<span>${today}  ${time}   &lt;FILE&gt;        <a href="https://docs.google.com/document/d/1a2XT9Ca_dD2sZKPfn74P_9xEabA0tqQmBNa8uBs6q8Y/edit?usp=sharing" target="_blank" id="CV" class="lux-dir-link external-link">Curriculum_Vitae.pdf</a></span>`
+                `<span>${today}  ${time}   &lt;FILE&gt;        <a href="../static/files/nadav_moscovici_cv.pdf" target="_blank" id="CV" class="lux-dir-link external-link">Curriculum_Vitae.pdf</a></span>`
             ];
             
             let index = 0;
