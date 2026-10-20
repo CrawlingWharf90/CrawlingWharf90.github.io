@@ -4,7 +4,7 @@
 /* --- 0. Global Master Variables --- */
 :root {
   --bg-color: #050505; /* DedSec Dark */
-  --text-primary: #FFFFFF;
+  --text-primary: #ffffff;
   --text-dim: #888888; /* DedSec Gray */
   --dedsec-blue: #1b33f6; /* DedSec Signature Neon Blue */
   --glass-bg: rgba(5, 5, 5, 0.85);
@@ -18,7 +18,13 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0) 50%, rgba(0, 0, 0, 0.1) 50%, rgba(0, 0, 0, 0.1));
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0) 50%,
+    rgba(0, 0, 0, 0.1) 50%,
+    rgba(0, 0, 0, 0.1)
+  );
   background-size: 100% 4px;
   pointer-events: none;
   z-index: 9999;
@@ -48,31 +54,40 @@
 .lux-btn:hover {
   background: var(--dedsec-blue);
   border-color: var(--dedsec-blue);
-  color: #FFFFFF;
+  color: #ffffff;
   box-shadow: 0 0 15px rgba(27, 51, 246, 0.6); /* Neon blue glow */
   text-shadow: 1px 1px 0px #000; /* Keeps text legible against the neon */
 }
 
 /* --- 3. Global Cursors --- */
-#go-back-btn button, .return-action {
-  cursor: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 14 4 9 9 4"></polyline><path d="M20 20v-7a4 4 0 0 0-4-4H4"></path></svg>') 12 12, pointer;
+#go-back-btn button,
+.return-action {
+  cursor:
+    url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 14 4 9 9 4"></polyline><path d="M20 20v-7a4 4 0 0 0-4-4H4"></path></svg>')
+      12 12,
+    pointer;
 }
-#go-back-btn button:hover, .return-action:hover {
-  cursor: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23000000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 14 4 9 9 4"></polyline><path d="M20 20v-7a4 4 0 0 0-4-4H4"></path></svg>') 12 12, pointer;
+#go-back-btn button:hover,
+.return-action:hover {
+  cursor:
+    url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23000000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 14 4 9 9 4"></polyline><path d="M20 20v-7a4 4 0 0 0-4-4H4"></path></svg>')
+      12 12,
+    pointer;
 }
 
-button[onclick^=followLink], a.external-link {
+/* button[onclick^=followLink], a.external-link {
   cursor: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>') 12 12, pointer;
 }
 button[onclick^=followLink]:hover, a.external-link:hover {
   cursor: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23000000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>') 12 12, pointer;
-}
+} */
 
 /* --- 4. Global Page Transitions --- */
 .lux-glitch-out {
   pointer-events: none;
   animation: fatalErrorOut 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-  filter: drop-shadow(4px 0 0 rgba(255, 0, 50, 0.6)) drop-shadow(-4px 0 0 rgba(0, 229, 255, 0.6));
+  filter: drop-shadow(4px 0 0 rgba(255, 0, 50, 0.6))
+    drop-shadow(-4px 0 0 rgba(0, 229, 255, 0.6));
 }
 
 .lux-glitch-in {
@@ -158,7 +173,8 @@ button[onclick^=followLink]:hover, a.external-link:hover {
   80% {
     clip-path: inset(0 0 0 0);
     transform: translate(0);
-    filter: drop-shadow(4px 0 0 rgba(255, 0, 50, 0.6)) drop-shadow(-4px 0 0 rgba(0, 229, 255, 0.6));
+    filter: drop-shadow(4px 0 0 rgba(255, 0, 50, 0.6))
+      drop-shadow(-4px 0 0 rgba(0, 229, 255, 0.6));
   }
   100% {
     clip-path: inset(0 0 0 0);
@@ -168,7 +184,7 @@ button[onclick^=followLink]:hover, a.external-link:hover {
 }
 body {
   background-color: #000000;
-  color: #FFFFFF;
+  color: #ffffff;
   font-family: "JetBrains Mono", monospace;
   font-weight: 300;
   font-size: 24px;
@@ -221,7 +237,7 @@ body {
 .cmd-input {
   background-color: transparent;
   border: none;
-  color: #FFFFFF;
+  color: #ffffff;
   font-size: inherit;
   font-family: inherit;
   margin-left: 8px;
@@ -234,7 +250,7 @@ body {
    THE SLIDER BUTTONS
    ========================================= */
 .lux-dir-link {
-  color: #FFFFFF;
+  color: #ffffff;
   text-decoration: none;
   position: relative;
   padding: 4px 12px;

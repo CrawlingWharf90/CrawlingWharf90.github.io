@@ -5,7 +5,7 @@
 /* --- 0. Global Master Variables --- */
 :root {
   --bg-color: #050505; /* DedSec Dark */
-  --text-primary: #FFFFFF;
+  --text-primary: #ffffff;
   --text-dim: #888888; /* DedSec Gray */
   --dedsec-blue: #1b33f6; /* DedSec Signature Neon Blue */
   --glass-bg: rgba(5, 5, 5, 0.85);
@@ -49,24 +49,28 @@
 .lux-btn:hover {
   background: var(--dedsec-blue);
   border-color: var(--dedsec-blue);
-  color: #FFFFFF;
+  color: #ffffff;
   box-shadow: 0 0 15px rgba(27, 51, 246, 0.6); /* Neon blue glow */
   text-shadow: 1px 1px 0px #000; /* Keeps text legible against the neon */
 }
 
 /* --- 3. Global Cursors --- */
-#go-back-btn button, .return-action {
+#go-back-btn button,
+.return-action {
   cursor: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 14 4 9 9 4"></polyline><path d="M20 20v-7a4 4 0 0 0-4-4H4"></path></svg>') 12 12, pointer;
 }
-#go-back-btn button:hover, .return-action:hover {
-  cursor: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23000000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 14 4 9 9 4"></polyline><path d="M20 20v-7a4 4 0 0 0-4-4H4"></path></svg>') 12 12, pointer;
+#go-back-btn button:hover,
+.return-action:hover {
+  cursor: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><g stroke="%23000000" stroke-width="5"><polyline points="9 14 4 9 9 4"></polyline><path d="M20 20v-7a4 4 0 0 0-4-4H4"></path></g><g stroke="%23ffffff" stroke-width="2.5"><polyline points="9 14 4 9 9 4"></polyline><path d="M20 20v-7a4 4 0 0 0-4-4H4"></path></g></svg>') 12 12, pointer;
 }
 
-button[onclick^=followLink], a.external-link {
+button[onclick^=followLink],
+a.external-link {
   cursor: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>') 12 12, pointer;
 }
-button[onclick^=followLink]:hover, a.external-link:hover {
-  cursor: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23000000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>') 12 12, pointer;
+button[onclick^=followLink]:hover,
+a.external-link:hover {
+  cursor: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><g stroke="%23000000" stroke-width="5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></g><g stroke="%23ffffff" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></g></svg>') 12 12, pointer;
 }
 
 /* --- 4. Global Page Transitions --- */
@@ -167,11 +171,13 @@ button[onclick^=followLink]:hover, a.external-link:hover {
     filter: none;
   }
 }
-#mail-btn, .mail-action {
+#mail-btn,
+.mail-action {
   cursor: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>') 12 12, pointer;
 }
-#mail-btn:hover, .mail-action:hover {
-  cursor: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23000000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>') 12 12, pointer;
+#mail-btn:hover,
+.mail-action:hover {
+  cursor: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="-1 -1 26 26" fill="none" stroke-linecap="round" stroke-linejoin="round"><g stroke="%23000000" stroke-width="5"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></g><g stroke="%23ffffff" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></g></svg>') 12 12, pointer;
 }
 
 body {
@@ -266,7 +272,7 @@ body {
   width: 100%;
   height: 1px;
   background-color: var(--text-primary);
-  box-shadow: 0 0 5px #FFF;
+  box-shadow: 0 0 5px #fff;
 }
 
 .lux-img {
@@ -333,7 +339,8 @@ body {
   width: 100%;
   white-space: nowrap;
 }
-#mail-modal h5, #mail-modal h4 {
+#mail-modal h5,
+#mail-modal h4 {
   font-family: "Karantina", system-ui;
   font-size: 2rem;
   letter-spacing: 1px;
@@ -357,7 +364,8 @@ body {
   border-bottom: 1px solid var(--text-primary);
   box-shadow: 0 5px 5px -5px rgba(255, 255, 255, 0.2);
 }
-#mail-modal #your-email, #mail-modal #subject {
+#mail-modal #your-email,
+#mail-modal #subject {
   margin-bottom: 2rem;
 }
 #mail-modal textarea {
@@ -385,7 +393,7 @@ body {
   transition: color 0.3s ease, transform 0.3s ease;
 }
 #close-mail-modal:hover {
-  color: #FFFFFF !important;
+  color: #ffffff !important;
   transform: scale(1.15);
   filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
 }

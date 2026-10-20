@@ -1,120 +1,120 @@
-@use 'global';
+@use "global";
 
 body {
-    background-color: #000000; 
-    color: #FFFFFF;
-    font-family: 'JetBrains Mono', monospace;
-    font-weight: 300;
-    font-size: 24px; 
+  background-color: #000000;
+  color: #ffffff;
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 300;
+  font-size: 24px;
 
-    height: 100vh;
-    width: 100vw;
-    overflow: hidden;
-    
-    padding-top: 10vh;
-    padding-left: 15vw;
-    box-sizing: border-box;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+
+  padding-top: 10vh;
+  padding-left: 15vw;
+  box-sizing: border-box;
 }
 
 #app {
-    height: calc(100vh - 10vh - 60px); 
-    overflow-y: auto; 
-    overflow-x: hidden;
-    padding-right: 20px;
-    
-    &::-webkit-scrollbar { 
-        width: 6px; 
+  height: calc(100vh - 10vh - 60px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 20px;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #333333;
+    border-radius: 3px;
+
+    &:hover {
+      background: #888888;
     }
-    &::-webkit-scrollbar-track { 
-        background: transparent; 
-    }
-    &::-webkit-scrollbar-thumb { 
-        background: #333333; 
-        border-radius: 3px; 
-        
-        &:hover {
-            background: #888888;
-        }
-    }
+  }
 }
 .cmd-container {
-    position: relative;
-    max-width: 1000px;
-    line-height: 1.8;  
+  position: relative;
+  max-width: 1000px;
+  line-height: 1.8;
 }
 
 .cmd-title {
-    color: #888888; 
-    margin-bottom: 2.5rem;
+  color: #888888;
+  margin-bottom: 2.5rem;
 }
 
 .cmd-path {
-    display: flex;
-    align-items: center;
-    white-space: pre-wrap;
-    margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  white-space: pre-wrap;
+  margin-bottom: 1.5rem;
 }
 
 .cmd-input {
-    background-color: transparent;
-    border: none;
-    color: #FFFFFF;
-    font-size: inherit;
-    font-family: inherit;
-    margin-left: 8px;
-    
-    &:focus {
-        outline: none;
-    }
+  background-color: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: inherit;
+  font-family: inherit;
+  margin-left: 8px;
+
+  &:focus {
+    outline: none;
+  }
 }
 
 /* =========================================
    THE SLIDER BUTTONS
    ========================================= */
 .lux-dir-link {
-    color: #FFFFFF;
-    text-decoration: none;
-    position: relative;
-    padding: 4px 12px;
-    margin-left: 10px;
-    z-index: 1;
-    display: inline-block;
-    
-    background: transparent;
-    border: none;
-    transition: color 0.1s ease; 
+  color: #ffffff;
+  text-decoration: none;
+  position: relative;
+  padding: 4px 12px;
+  margin-left: 10px;
+  z-index: 1;
+  display: inline-block;
 
+  background: transparent;
+  border: none;
+  transition: color 0.1s ease;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background-color: var(--dedsec-blue);
+    z-index: -1;
+    transition: width 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  // &::after {
+  //     content: '';
+  //     position: absolute;
+  //     top: 0;
+  //     left: 0;
+  //     width: 0%;
+  //     height: 100%;
+  //     border: 1px solid #888888;
+  //     box-sizing: border-box;
+  //     z-index: 2;
+  //     transition: width 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+  // }
+
+  &:hover {
     &::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 0%;
-        height: 100%;
-        background-color: var(--dedsec-blue);
-        z-index: -1;
-        transition: width 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+      width: 100%;
     }
-
     // &::after {
-    //     content: '';
-    //     position: absolute;
-    //     top: 0;
-    //     left: 0;
-    //     width: 0%;
-    //     height: 100%;
-    //     border: 1px solid #888888; 
-    //     box-sizing: border-box;
-    //     z-index: 2;
-    //     transition: width 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+    //     width: 100%;
     // }
-
-    &:hover {
-        &::before {
-            width: 100%;
-        }
-        // &::after {
-        //     width: 100%;
-        // }
-    }
+  }
 }
