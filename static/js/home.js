@@ -115,3 +115,4 @@ const CliDisplay = {
 const app = Vue.createApp({});
 app.component('cli-display', CliDisplay);
 app.mount('#app');
+
